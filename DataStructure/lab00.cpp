@@ -51,7 +51,7 @@
 //	Breakpoints();
 //}
 
-//2 задание
+//2 задание2
 
 //2.1
 //#include <iostream>
@@ -287,7 +287,6 @@
 //	
 //	b = 7;
 //	cout << "Value of a: " << a << endl;
-//
 //
 //}
 
@@ -547,7 +546,7 @@
 //#include <iostream>
 //using namespace std;
 //
-//int letterCounter(char* arr, int size) 
+//int lettercounter(char* arr, int size) 
 //{
 //	int counter = 0;
 //	for (int i = 0; i < size; i++) 
@@ -561,35 +560,21 @@
 //
 //int main() 
 //{
-//	char* arrayChar = new char[15];
-//    arrayChar[0] = 'a';
-//    arrayChar[1] = '5';
-//    arrayChar[2] = 'm';
-//    arrayChar[3] = 'i';
-//    arrayChar[4] = '%';
-//    arrayChar[5] = '!';
-//    arrayChar[6] = 's';
-//    arrayChar[7] = 'p';
-//    arrayChar[8] = '*';
-//    arrayChar[9] = '9';
-//    arrayChar[10] = 'f';
-//    arrayChar[11] = '^';
-//    arrayChar[12] = ';';
-//    arrayChar[13] = 'q';
-//    arrayChar[14] = 'k';
+//    char* arraychar = new char[15] { 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'};
+//    
 //
-//    cout << "Char array is:" << endl;
+//    cout << "char array is:" << endl;
 //
 //    for (int i = 0; i < 15; i++) 
 //    {
-//        cout << arrayChar[i] << " ";
+//        cout << arraychar[i] << " ";
 //    }
 //
 //    cout << endl;
 //
-//    int alphabetLetters = letterCounter(arrayChar, 15);
+//    int alphabetletters = lettercounter(arraychar, 15);
 //
-//    cout << "Letters count in array: " << alphabetLetters;
+//    cout << "letters count in array: " << alphabetletters;
 //}
 
 //5.7
@@ -669,22 +654,23 @@
 //    return result; // Возвращаем количество положительных значений
 //}
 //
+//void printPositive(int count)
+//{
+//    int* values = ReadArray(count);
+//    cout << "Количество положительных значений: " << CountPositiveValues(values, count) << endl;
+//    delete[] values;
+//}
+//
 //int main()
 //{   
 //    setlocale(LC_ALL, "Russian");
 //    // Читаем первый массив размером 15
-//    int count = 15;
-//    int* values = ReadArray(count);
-//    cout << "Количество положительных значений: " << CountPositiveValues(values, count) << endl;
 //
-//    delete[] values;
-//    // Читаем второй массив размером 20
-//    count = 20;
-//    values = ReadArray(count);
-//    cout << "Количество положительных значений: " << CountPositiveValues(values, count) << endl;
+//    printPositive(15);
+// 
+//    printPositive(20);
 //
 //    // Освобождаем выделенную память
-//    delete[] values;
 //
 //    return 0;
 //}
@@ -692,73 +678,73 @@
 // заполнение массива чем либо(0?) если пользователь не введет все значения и массив не заполнится
 
 
-//7 zadanie
+//6 zadanie
 //
-//#include <iostream>
-//#include <string>
-//using namespace std;
+#include <iostream>
+#include <string>
+using namespace std;
 //
 //
 ////! \brief Структура, описывающая человека.
 ///*!
 // * В данной структуре хранится информация о имени, фамилии и возрасте человека.
 // */
-//struct Person
-//{
-//    //! Имя человека.
-//    string FirstName;
-//
-//    //! Фамилия человека.
-//    string LastName;
-//
-//    //! Возраст человека.
-//    unsigned Age;
-//};
-//
-// // Функция для вывода информации о человеке
-//void WritePerson(const Person& person)
-//{
-//    cout << "First Name: " + person.FirstName
-//        + "; Last Name: " + person.LastName
-//        + "; Age: " + to_string(person.Age)
-//        << endl;
-//}
-//
-//const int PeopleCount = 5;
-//
-////! \brief Создает массив людей.
-////! \return Массив указателей на объекты структуры человека \see Person.
-//Person** CreatePeopleArray()
-//{
-//    Person** people = new Person * [PeopleCount];
-//
-//    people[0] = new Person();
-//    people[0]->FirstName = "Casey";
-//    people[0]->LastName = "Aguilar";
-//    people[0]->Age = 30;
-//
-//    people[1] = new Person();
-//    people[1]->FirstName = "Brock";
-//    people[1]->LastName = "Curtis";
-//    people[1]->Age = 19;
-//
-//    people[2] = new Person();
-//    people[2]->FirstName = "Blake";
-//    people[2]->LastName = "Diaz";
-//    people[2]->Age = 21;
-//
-//    people[3] = new Person();
-//    people[3]->FirstName = "Cristian";
-//    people[3]->LastName = "Evans";
-//    people[3]->Age = 55;
-//
-//    people[4] = new Person();
-//    people[4]->FirstName = "Les";
-//    people[4]->LastName = "Foss";
-//    people[4]->Age = 4;
-//
-//    return people;
-//}
+struct Person
+{
+    //! Имя человека.
+    string FirstName;
+
+    //! Фамилия человека.
+    string LastName;
+
+    //! Возраст человека.
+    unsigned Age;
+};
+
+ // Функция для вывода информации о человеке
+void WritePerson(const Person& person)
+{
+    cout << "First Name: " + person.FirstName
+        + "; Last Name: " + person.LastName
+        + "; Age: " + to_string(person.Age)
+        << endl;
+}
+
+const int PeopleCount = 5;
+
+//! \brief Создает массив людей.
+//! \return Массив указателей на объекты структуры человека \see Person.
+Person** CreatePeopleArray()
+{
+    Person** people = new Person * [PeopleCount];
+
+    people[0] = new Person();
+    people[0]->FirstName = "Casey";
+    people[0]->LastName = "Aguilar";
+    people[0]->Age = 30;
+
+    people[1] = new Person();
+    people[1]->FirstName = "Brock";
+    people[1]->LastName = "Curtis";
+    people[1]->Age = 19;
+
+    people[2] = new Person();
+    people[2]->FirstName = "Blake";
+    people[2]->LastName = "Diaz";
+    people[2]->Age = 21;
+
+    people[3] = new Person();
+    people[3]->FirstName = "Cristian";
+    people[3]->LastName = "Evans";
+    people[3]->Age = 55;
+
+    people[4] = new Person();
+    people[4]->FirstName = "Les";
+    people[4]->LastName = "Foss";
+    people[4]->Age = 4;
+
+    return people;
+}
 //
 //void ClearPerson(Person* person)
 //{
