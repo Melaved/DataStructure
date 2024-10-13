@@ -39,7 +39,7 @@ int main()
             case 2:
             {
                 int value;
-                cout << "Enter the value to delete:: ";
+                cout << "Enter the value to delete: ";
                 cin >> value;
                 RemoveByValue(myArray, value);
                 break;
@@ -47,7 +47,7 @@ int main()
             case 3:
             {
                 int value;
-                cout << "Enter the element to insert at the beginning ";
+                cout << "Enter the element to insert at the beginning: ";
                 cin >> value;
                 AddElement(myArray, 0, value);
                 break;
@@ -55,7 +55,7 @@ int main()
             case 4: 
             {
                 int  value;
-                cout << "Enter the element to insert at the end" << endl;
+                cout << "Enter the element to insert at the end: " << endl;
                 cin >> value;
                 AddElement(myArray, myArray->Size, value);
                 break;
@@ -63,9 +63,9 @@ int main()
             case 5:
             {
                 int index, value;
-                std::cout << "Enter index to insert: ";
-                std::cin >> index;
-                cout << "enter the element to insert after a certain element: ";
+                cout << "Enter index to insert: ";
+                cin >> index;
+                cout << "Enter the element to insert after a certain element: "<< endl;
                 cin >> value;
                 AddElement(myArray, index, value);
                 break;
@@ -73,7 +73,8 @@ int main()
             case 6: 
             {
                 SortArray(myArray);
-                cout << "The array is sorted." << endl;
+                cout << "The array is sorted. " << endl;
+                break;
             }
             case 7: 
             {

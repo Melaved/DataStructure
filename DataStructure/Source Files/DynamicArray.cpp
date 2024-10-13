@@ -82,7 +82,7 @@ void RemoveByValue(DynamicArray* array, int value)
 {
 	for (int i = 0; i < array->Size; ++i) 
 	{
-		if (array->Array[i] = value) 
+		if (array->Array[i] == value) 
 		{
 			RemoveByIndex(array, i);
 			--i;
@@ -134,7 +134,7 @@ void BinarySearch(DynamicArray* array, int value)
 		int mid = (first + last) / 2;
 		if (array->Array[mid] == value)
 		{
-			cout << "Element " << value << "found in index " << mid << endl;
+			cout << "Element " << value << " found in index " << mid << endl;
 		}
 		if (value < array->Array[mid])
 		{
