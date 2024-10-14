@@ -1,5 +1,6 @@
 #include <iostream>
-#include <C:\Users\skuce\source\repos\DataStructure\DataStructure\Header Files\DynamicArray.h>
+//TODO: remake
+#include "..\Header Files\DynamicArray.h"
 using namespace std;
 
 int main()
@@ -7,6 +8,7 @@ int main()
 
     DynamicArray* myArray = CreateArray();
 
+    //TODO: remove
     int choice;
     do {
         cout << "Current array:\n";
@@ -25,81 +27,86 @@ int main()
         cout << "Your input: ";
         cin >> choice;
 
-        try {
-            switch (choice) {
+        
+        switch (choice) {
             
-            case 1:
-            {
-                int index;
-                cout << "Enter the index to delete: ";
-                cin >> index;
-                RemoveByIndex(myArray, index);
-                break;
-            }
-            case 2:
-            {
-                int value;
-                cout << "Enter the value to delete: ";
-                cin >> value;
-                RemoveByValue(myArray, value);
-                break;
-            }
-            case 3:
-            {
-                int value;
-                cout << "Enter the element to insert at the beginning: ";
-                cin >> value;
-                AddElement(myArray, 0, value);
-                break;
-            }
-            case 4: 
-            {
-                int  value;
-                cout << "Enter the element to insert at the end: " << endl;
-                cin >> value;
-                AddElement(myArray, myArray->Size, value);
-                break;
-            }
-            case 5:
-            {
-                int index, value;
-                cout << "Enter index to insert: ";
-                cin >> index;
-                cout << "Enter the element to insert after a certain element: "<< endl;
-                cin >> value;
-                AddElement(myArray, index, value);
-                break;
-            }
-            case 6: 
-            {
-                SortArray(myArray);
-                cout << "The array is sorted. " << endl;
-                break;
-            }
-            case 7: 
-            {
-                int value;
-                cout << "Enter a value for a linear search: ";
-                cin >> value;
-                LinearSearch(myArray, value);
-                break;
-            }
-            case 8:
-            {
-                int value;
-                cout << "Enter a value for a binary search: ";
-                cin >> value;
-                BinarySearch(myArray, value);
-                break;
-            }
-            
-            }
+        case 1:
+        {
+            //TODO: duplication
+            int index;
+            cout << "Enter the index to delete: ";
+            cin >> index;
+            RemoveByIndex(myArray, index);
+            break;
         }
-        catch (const exception& e) {
-            cerr << "Error: " << e.what() << endl;
+        case 2:
+        {
+            //TODO: duplication
+            int value;
+            cout << "Enter the value to delete: ";
+            cin >> value;
+            RemoveByValue(myArray, value);
+            break;
         }
+        case 3:
+        {
+            //TODO: duplication
+            int value;
+            cout << "Enter the element to insert at the beginning: ";
+            cin >> value;
+            AddElement(myArray, 0, value);
+            break;
+        }
+        case 4: 
+        {
+            //TODO: duplication
+            int  value;
+            cout << "Enter the element to insert at the end: " ;
+            cin >> value;
+            AddElement(myArray, myArray->Size, value);
+            break;
+        }
+        case 5:
+        {
+            //TODO: rsdn
+            int index, value;
+            cout << "Enter index to insert: ";
+            cin >> index;
+            cout << "Enter the element to insert after a certain element: ";
+            cin >> value;
+            AddElement(myArray, index, value);
+            break;
+        }
+        case 6: 
+        {
+            SortArray(myArray);
+            cout << "The array is sorted. " << endl;
+            break;
+        }
+        case 7: 
+        {
+            int value;
+            cout << "Enter a value for a linear search: ";
+            cin >> value;
+            LinearSearch(myArray, value);
+            break;
+        }
+        case 8:
+        {
+            int value;
+            cout << "Enter a value for a binary search: ";
+            cin >> value;
+            BinarySearch(myArray, value);
+            break;
+        }
+            //TODO: return 0
+        }
+        }
+      
+     
 
-    } while (choice != 0);
+    
+    while (choice != 0);
 
     FreeArray(myArray);
 }

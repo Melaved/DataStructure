@@ -1,31 +1,23 @@
+//TODO: remove input-output
 #include <iostream>
-#include <stdexcept>
+#include "..\Header Files\DynamicArray.h"
 using namespace std;
 
-
-struct DynamicArray
+void Resize(DynamicArray* array, int capacity)
 {
-	int Size;
-	int Capacity;
-	int* Array;
-
-	void Resize(int NewCapacity) 
+	int* newArray = new int[capacity];
+	for (int i = 0; i < array->Size; ++i)
 	{
-
-		int* NewArray = new int[NewCapacity];
-		for (int i = 0; i < Size; ++i)
-		{
-			NewArray[i] = Array[i];
-		}
-		delete[] Array;
-		Array = NewArray;
-		Capacity = NewCapacity;
+		newArray[i] = array->Array[i];
 	}
+	delete[] array->Array;
+	array->Array = newArray;
+	array->Capacity = capacity;
+}
 
-};
-
-const int INITIAL_CAPACITY = 8;
-const double GROWTH_FACTOR = 2;
+//TODO: to header
+//const int INITIAL_CAPACITY = 8;
+//const double GROWTH_FACTOR = 2;
 
 
 DynamicArray* CreateArray()
@@ -40,7 +32,8 @@ DynamicArray* CreateArray()
 
 void CheckRange(DynamicArray* array, int index) 
 {
-	if (index < 0 || index > array->Size) {
+	if (index < 0 || index > array->Size) 
+	{
 		throw out_of_range("Index out of range");
 	}
 }
@@ -51,7 +44,7 @@ void AddElement(DynamicArray* array, int index, int value)
 
 	if (array->Size >= array->Capacity) 
 	{
-		array->Resize(array->Capacity * GROWTH_FACTOR);
+		Resize(array,array->Capacity * GROWTH_FACTOR);
 	}
 	for (int i = array->Size; i > index; --i)
 	{
@@ -74,7 +67,7 @@ void RemoveByIndex(DynamicArray* array, int index)
 
 	if (array->Size < array->Capacity / GROWTH_FACTOR && array->Capacity > INITIAL_CAPACITY)
 	{
-		array->Resize(array->Capacity / GROWTH_FACTOR);
+		Resize(array, array->Capacity / GROWTH_FACTOR);
 	}
 }
 
@@ -113,6 +106,7 @@ void SortArray(DynamicArray* array)
 
 void LinearSearch(DynamicArray* array, int value)
 {
+	//TODO: remove input-output
 	for (int i = 0; i < array->Size; ++i) {
 		if (array->Array[i] == value) {
 			cout << "Element " << value << "found in index " << i << endl;
@@ -135,6 +129,7 @@ void BinarySearch(DynamicArray* array, int value)
 		int mid = (first + last) / 2;
 		if (array->Array[mid] == value)
 		{
+			//TODO: remove input-output
 			cout << "Element " << value << " found in index " << mid << endl;
 		}
 		if (value < array->Array[mid])
@@ -158,6 +153,7 @@ void FreeArray(DynamicArray* array) {
 
 void Print(DynamicArray* array) 
 {
+	//TODO: remove input-output
 	for (int i = 0; i < array->Size; i++) {
 		cout << array->Array[i] << ", ";
 	}

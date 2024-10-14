@@ -9,10 +9,12 @@ struct DynamicArray
 
 	//! \brief Массив.
 	int* Array;
-
-	void Resize(int NewCapacity)
 };
 
+const int INITIAL_CAPACITY = 8;
+const double GROWTH_FACTOR = 2;
+
+void Resize(DynamicArray* array, int capacity);
 
 DynamicArray* CreateArray();
 
