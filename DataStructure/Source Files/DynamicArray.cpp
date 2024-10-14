@@ -95,6 +95,7 @@ int GetElement(DynamicArray* array, int index) {
 	return array->Array[index];
 }
 
+
 void SortArray(DynamicArray* array)
 {
 	for (int i = 1; i < array->Size; ++i)

@@ -9,6 +9,8 @@ struct DynamicArray
 
 	//! \brief Массив.
 	int* Array;
+
+	void Resize(int NewCapacity)
 };
 
 
@@ -36,7 +38,7 @@ void RemoveByValue(DynamicArray* array, int value);
 //! \return Возвращает значение, которое находится под индексом.
 int GetElement(DynamicArray* array, int index);
 
-//! \brief Сортирует массив.
+//! \brief Сортирует массив(сортировка вставками).
 //! \param array Структура динамического массива.
 void SortArray(DynamicArray* array);
 
