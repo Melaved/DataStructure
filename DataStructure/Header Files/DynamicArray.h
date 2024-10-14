@@ -11,11 +11,18 @@ struct DynamicArray
 	int* Array;
 };
 
+//! \bried Изначальная вместимость массива.
 const int INITIAL_CAPACITY = 8;
+
+//! \bried Фактор роста массива.
 const double GROWTH_FACTOR = 2;
 
+//! \brief Изменяет вместимость массива.
+//! \param array Структура динамического массива.
+//! \param capacity Вместимость массива.
 void Resize(DynamicArray* array, int capacity);
 
+//! \brief Создание динамического массива.
 DynamicArray* CreateArray();
 
 //! \brief Добавляет элемент в массив.
