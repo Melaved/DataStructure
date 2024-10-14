@@ -1,6 +1,6 @@
 //TODO: remove input-output
-#include <iostream>
 #include "..\Header Files\DynamicArray.h"
+#include <stdexcept>
 using namespace std;
 
 void Resize(DynamicArray* array, int capacity)
@@ -83,7 +83,8 @@ void RemoveByValue(DynamicArray* array, int value)
 	}
 }
 
-int GetElement(DynamicArray* array, int index) {
+int GetElement(DynamicArray* array, int index) 
+{
 	CheckRange(array, index);
 	return array->Array[index];
 }
@@ -104,45 +105,34 @@ void SortArray(DynamicArray* array)
 	}
 }
 
-void LinearSearch(DynamicArray* array, int value)
+int LinearSearch(DynamicArray* array, int value)
 {
-	//TODO: remove input-output
 	for (int i = 0; i < array->Size; ++i) {
 		if (array->Array[i] == value) {
-			cout << "Element " << value << "found in index " << i << endl;
-			break;
+			return i; 
 		}
 	}
-	cout << "Element " << value << " not found." << endl;
+	return -1; 
 }
 
-
-
-
-void BinarySearch(DynamicArray* array, int value) 
-{
-	SortArray(array);
+int BinarySearch(DynamicArray* array, int value) {
+	SortArray(array); 
 	int first = 0;
 	int last = array->Size - 1;
-	while (first <= last) 
-	{
+
+	while (first <= last) {
 		int mid = (first + last) / 2;
-		if (array->Array[mid] == value)
-		{
-			//TODO: remove input-output
-			cout << "Element " << value << " found in index " << mid << endl;
+		if (array->Array[mid] == value) {
+			return mid;
 		}
-		if (value < array->Array[mid])
-		{
+		if (value < array->Array[mid]) {
 			last = mid - 1;
 		}
-
-		else
-		{
+		else {
 			first = mid + 1;
 		}
 	}
-	cout << "Element " << value << " not found." << endl;
+	return -1; 
 }
 
 void FreeArray(DynamicArray* array) {
@@ -151,11 +141,4 @@ void FreeArray(DynamicArray* array) {
 }
 
 
-void Print(DynamicArray* array) 
-{
-	//TODO: remove input-output
-	for (int i = 0; i < array->Size; i++) {
-		cout << array->Array[i] << ", ";
-	}
-	cout << endl;
-}
+

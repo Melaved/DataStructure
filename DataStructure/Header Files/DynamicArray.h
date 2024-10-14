@@ -47,15 +47,13 @@ void SortArray(DynamicArray* array);
 //! \brief Линейный поиск индекса элемента по передаваемому значению.
 //! \param array Структура динамического массива.
 //! \param value Значение, индекс которого нужно найти.
-void LinearSearch(DynamicArray* array, int value);
+int LinearSearch(DynamicArray* array, int value);
 
 //! \brief Бинарный поиск индекса элемента по передаваемому значению.
 //! \param array Структура динамического массива.
 //! \param value Значение, индекс которого нужно найти.
-void BinarySearch(DynamicArray* array, int value);
+int BinarySearch(DynamicArray* array, int value);
 
 //! \brief Очистка данных массива.
 //! \param array Структура динамического массива.
 void FreeArray(DynamicArray* array);
-
-void Print(DynamicArray* array);

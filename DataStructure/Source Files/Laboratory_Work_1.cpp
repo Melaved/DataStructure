@@ -1,20 +1,29 @@
 #include <iostream>
-//TODO: remake
 #include "..\Header Files\DynamicArray.h"
 using namespace std;
 
-int main()
+int GetInput(const string& prompt) 
 {
+    int value;
+    cout << prompt;
+    cin >> value;
+    return value;
+}
 
+int main() 
+{
     DynamicArray* myArray = CreateArray();
+    int choice = -1; 
 
-    //TODO: remove
-    int choice;
-    do {
-        cout << "Current array:\n";
-        Print(myArray);
-        cout << "\nSelect the action you want to do:\n";
-      
+    while (choice != 0)
+    {
+        cout << "Current array\n";
+        for (int i = 0; i < myArray->Size; i++) {
+            cout << myArray->Array[i] << ", ";
+        }
+        cout << endl;
+       
+        cout << "Select the action you want to do\n";
         cout << "1. Remove an element by index from an array\n";
         cout << "2. Remove an element by value from an array\n";
         cout << "3. Insert an element at the beginning\n";
@@ -26,87 +35,82 @@ int main()
         cout << "0. Exit\n";
         cout << "Your input: ";
         cin >> choice;
-
         
-        switch (choice) {
-            
-        case 1:
+
+        switch (choice) 
         {
-            //TODO: duplication
-            int index;
-            cout << "Enter the index to delete: ";
-            cin >> index;
+        case 1: 
+        {
+            int index = GetInput("Enter the index to delete: ");
             RemoveByIndex(myArray, index);
             break;
         }
-        case 2:
+        case 2: 
         {
-            //TODO: duplication
-            int value;
-            cout << "Enter the value to delete: ";
-            cin >> value;
+            int value = GetInput("Enter the value to delete: ");
             RemoveByValue(myArray, value);
             break;
         }
         case 3:
         {
-            //TODO: duplication
-            int value;
-            cout << "Enter the element to insert at the beginning: ";
-            cin >> value;
+            int value = GetInput("Enter the element to insert at the beginning: ");
             AddElement(myArray, 0, value);
             break;
         }
         case 4: 
         {
-            //TODO: duplication
-            int  value;
-            cout << "Enter the element to insert at the end: " ;
-            cin >> value;
+            int value = GetInput("Enter the element to insert at the end: ");
             AddElement(myArray, myArray->Size, value);
             break;
         }
         case 5:
         {
-            //TODO: rsdn
-            int index, value;
-            cout << "Enter index to insert: ";
-            cin >> index;
-            cout << "Enter the element to insert after a certain element: ";
-            cin >> value;
+            int index = GetInput("Enter index to insert: ");
+            int value = GetInput("Enter the element to insert after a certain element: ");
             AddElement(myArray, index, value);
             break;
         }
-        case 6: 
+        case 6:
         {
             SortArray(myArray);
-            cout << "The array is sorted. " << endl;
+            cout << "The array is sorted." << endl;
             break;
         }
         case 7: 
         {
-            int value;
-            cout << "Enter a value for a linear search: ";
-            cin >> value;
-            LinearSearch(myArray, value);
+            int value = GetInput("Enter a value for a linear search: ");
+            int index = LinearSearch(myArray, value);
+            if (index != -1)
+            {
+                cout << "Element found at index: " << index << endl;
+            }
+            else 
+            {
+                cout << "Element not found." << endl;
+            }
             break;
         }
         case 8:
         {
-            int value;
-            cout << "Enter a value for a binary search: ";
-            cin >> value;
-            BinarySearch(myArray, value);
+            int value = GetInput("Enter a value for a binary search: ");
+            int index = BinarySearch(myArray, value);
+            if (index != -1)
+            {
+                cout << "Element found at index: " << index << endl;
+            }
+            else 
+            {
+                cout << "Element not found." << endl;
+            }
             break;
         }
-            //TODO: return 0
+        case 0:
+            break;
+        default:
+            cout << "Invalid choice. Please try again." << endl;
         }
-        }
-      
-     
-
-    
-    while (choice != 0);
+    }
 
     FreeArray(myArray);
+    return 0;
 }
