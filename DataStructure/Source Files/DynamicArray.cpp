@@ -1,4 +1,3 @@
-//TODO: remove input-output
 #include "..\Header Files\DynamicArray.h"
 #include <stdexcept>
 using namespace std;
@@ -15,11 +14,6 @@ void Resize(DynamicArray* array, int capacity)
 	array->Capacity = capacity;
 }
 
-//TODO: to header
-//const int INITIAL_CAPACITY = 8;
-//const double GROWTH_FACTOR = 2;
-
-
 DynamicArray* CreateArray()
 {
 	DynamicArray* array = new DynamicArray;
@@ -28,7 +22,6 @@ DynamicArray* CreateArray()
 	array->Array = new int[array->Capacity];
 	return array;
 };
-
 
 void CheckRange(DynamicArray* array, int index) 
 {
@@ -107,35 +100,43 @@ void SortArray(DynamicArray* array)
 
 int LinearSearch(DynamicArray* array, int value)
 {
-	for (int i = 0; i < array->Size; ++i) {
-		if (array->Array[i] == value) {
+	for (int i = 0; i < array->Size; ++i) 
+	{
+		if (array->Array[i] == value) 
+		{
 			return i; 
 		}
 	}
 	return -1; 
 }
 
-int BinarySearch(DynamicArray* array, int value) {
+int BinarySearch(DynamicArray* array, int value) 
+{
 	SortArray(array); 
 	int first = 0;
 	int last = array->Size - 1;
 
-	while (first <= last) {
+	while (first <= last) 
+	{
 		int mid = (first + last) / 2;
-		if (array->Array[mid] == value) {
+		if (array->Array[mid] == value)
+		{
 			return mid;
 		}
-		if (value < array->Array[mid]) {
+		if (value < array->Array[mid])
+		{
 			last = mid - 1;
 		}
-		else {
+		else
+		{
 			first = mid + 1;
 		}
 	}
 	return -1; 
 }
 
-void FreeArray(DynamicArray* array) {
+void FreeArray(DynamicArray* array) 
+{
 	delete[] array->Array;
 	delete array;
 }

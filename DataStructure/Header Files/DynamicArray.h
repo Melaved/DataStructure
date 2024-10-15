@@ -12,7 +12,7 @@ struct DynamicArray
 };
 
 //! \bried Изначальная вместимость массива.
-const int INITIAL_CAPACITY = 8;
+const int INITIAL_CAPACITY = 4;
 
 //! \bried Фактор роста массива.
 const double GROWTH_FACTOR = 2;

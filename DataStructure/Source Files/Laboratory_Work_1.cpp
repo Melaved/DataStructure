@@ -2,6 +2,7 @@
 #include "..\Header Files\DynamicArray.h"
 using namespace std;
 
+// ! \brief Задает значение по запросу.
 int GetInput(const string& prompt) 
 {
     int value;
@@ -10,15 +11,29 @@ int GetInput(const string& prompt)
     return value;
 }
 
+//! \bried Выводит результат поиска индекса.
+void PrintIndexResult(int index) 
+{
+    if (index != -1)
+    {
+        cout << "Element found at index: " << index << endl;
+    }
+    else
+    {
+        cout << "Element not found." << endl;
+    }
+}
+
 int main() 
 {
     DynamicArray* myArray = CreateArray();
-    int choice = -1; 
+    
 
-    while (choice != 0)
+    while (true)
     {
         cout << "Current array\n";
-        for (int i = 0; i < myArray->Size; i++) {
+        for (int i = 0; i < myArray->Size; i++) 
+        {
             cout << myArray->Array[i] << ", ";
         }
         cout << endl;
@@ -33,84 +48,75 @@ int main()
         cout << "7. Linear search for an element in an array\n";
         cout << "8. Binary search for an element in an array\n";
         cout << "0. Exit\n";
-        cout << "Your input: ";
-        cin >> choice;
+        
+        //TODO: duplication
+        int choice = GetInput("Your input: ");
+        
+        
         
 
         switch (choice) 
         {
-        case 1: 
-        {
-            int index = GetInput("Enter the index to delete: ");
-            RemoveByIndex(myArray, index);
-            break;
-        }
-        case 2: 
-        {
-            int value = GetInput("Enter the value to delete: ");
-            RemoveByValue(myArray, value);
-            break;
-        }
-        case 3:
-        {
-            int value = GetInput("Enter the element to insert at the beginning: ");
-            AddElement(myArray, 0, value);
-            break;
-        }
-        case 4: 
-        {
-            int value = GetInput("Enter the element to insert at the end: ");
-            AddElement(myArray, myArray->Size, value);
-            break;
-        }
-        case 5:
-        {
-            int index = GetInput("Enter index to insert: ");
-            int value = GetInput("Enter the element to insert after a certain element: ");
-            AddElement(myArray, index, value);
-            break;
-        }
-        case 6:
-        {
-            SortArray(myArray);
-            cout << "The array is sorted." << endl;
-            break;
-        }
-        case 7: 
-        {
-            int value = GetInput("Enter a value for a linear search: ");
-            int index = LinearSearch(myArray, value);
-            if (index != -1)
+            case 1: 
             {
-                cout << "Element found at index: " << index << endl;
+                int index = GetInput("Enter the index to delete: ");
+                RemoveByIndex(myArray, index);
+                break;
             }
-            else 
+            case 2: 
             {
-                cout << "Element not found." << endl;
+                int value = GetInput("Enter the value to delete: ");
+                RemoveByValue(myArray, value);
+                break;
             }
-            break;
-        }
-        case 8:
-        {
-            int value = GetInput("Enter a value for a binary search: ");
-            int index = BinarySearch(myArray, value);
-            if (index != -1)
+            case 3:
             {
-                cout << "Element found at index: " << index << endl;
+                int value = GetInput("Enter the element to insert at the beginning: ");
+                AddElement(myArray, 0, value);
+                break;
             }
-            else 
+            case 4: 
             {
-                cout << "Element not found." << endl;
+                int value = GetInput("Enter the element to insert at the end: ");
+                AddElement(myArray, myArray->Size, value);
+                break;
             }
-            break;
-        }
-        case 0:
-            break;
-        default:
-            cout << "Invalid choice. Please try again." << endl;
-        }
+            case 5:
+            {
+                int index = GetInput("Enter index to insert: ");
+                int value = GetInput("Enter the element to insert after a certain element: ");
+                AddElement(myArray, index, value);
+                break;
+            }
+            case 6:
+            {
+                SortArray(myArray);
+                cout << "The array is sorted." << endl;
+                break;
+            }
+            case 7: 
+            {
+                int value = GetInput("Enter a value for a linear search: ");
+                int index = LinearSearch(myArray, value);
+                //TODO: duplication
+                PrintIndexResult(index);
+                break;
+            }
+            case 8:
+            {
+                int value = GetInput("Enter a value for a binary search: ");
+                int index = BinarySearch(myArray, value);
+                //TODO: duplication5
+                PrintIndexResult(index);
+                break;
+            }
+            case 0:
+            {
+                FreeArray(myArray);
+                return 0;
+            }
+            default:
+                cout << "Invalid choice. Please try again." << endl;
+            }
     }
-
-    FreeArray(myArray);
-    return 0;
 }
