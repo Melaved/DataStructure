@@ -2,7 +2,8 @@
 #include "..\Header Files\DynamicArray.h"
 using namespace std;
 
-// ! \brief Задает значение по запросу.
+//! \brief Задает значение по запросу.
+//! \param prompt Строка, содержащая текст запроса для ввода.
 int GetInput(const string& prompt) 
 {
     int value;
@@ -11,7 +12,8 @@ int GetInput(const string& prompt)
     return value;
 }
 
-//! \bried Выводит результат поиска индекса.
+//! \brief Выводит результат поиска индекса.
+//! \param index Индекс элемента, полученный в результате поиска.
 void PrintIndexResult(int index) 
 {
     if (index != -1)
@@ -49,11 +51,7 @@ int main()
         cout << "8. Binary search for an element in an array\n";
         cout << "0. Exit\n";
         
-        //TODO: duplication
         int choice = GetInput("Your input: ");
-        
-        
-        
 
         switch (choice) 
         {
@@ -98,7 +96,7 @@ int main()
             {
                 int value = GetInput("Enter a value for a linear search: ");
                 int index = LinearSearch(myArray, value);
-                //TODO: duplication
+
                 PrintIndexResult(index);
                 break;
             }
@@ -106,7 +104,7 @@ int main()
             {
                 int value = GetInput("Enter a value for a binary search: ");
                 int index = BinarySearch(myArray, value);
-                //TODO: duplication5
+
                 PrintIndexResult(index);
                 break;
             }
