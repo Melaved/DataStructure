@@ -21,6 +21,12 @@
     <ClCompile Include="Source Files\Laboratory_Work_1.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="Source Files\Laboratory_Work_2.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Files\DoublyLinkedList.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header Files\DynamicArray.h">
