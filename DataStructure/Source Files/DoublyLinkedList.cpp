@@ -2,16 +2,18 @@ struct Node
 {
 	int Data;
 
-	Node* Next = nullptr;
+	Node* Next;
 
-	Node* Prev = nullptr;
+	Node* Prev;
 };
 
 struct List 
 {
-	Node* Head = nullptr;
+	Node* Head;
 
-	Node* Tail = nullptr;
+	Node* Tail;
+
+	int Size;
 };
 
 void initList(List* list) {
@@ -21,4 +23,31 @@ void initList(List* list) {
 
 bool isEmpty(const List* list) {
 	return list->Head == nullptr;
+}
+
+void Add(List* list, int index, int data)
+{
+	if (index < 0 || index > list->Size) {
+		
+		return;
+	}
+}
+
+bool LinearSearch(List* list, int data) 
+{
+	if (list = nullptr) 
+	{
+		return false;
+	}
+	
+	Node* current = list->Head;
+	while (current != nullptr)
+	{
+		if (current->Data == data)
+		{
+			return true;
+		}
+		current = current->Next;
+	}
+	return false;
 }
