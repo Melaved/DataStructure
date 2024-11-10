@@ -1,6 +1,6 @@
 #include <iostream>
-#include "DoublyLinkedList.cpp"
-#include "..\header files\doublelinkedlist.h"
+#include "..\header files\DoubleLinkedList.h";
+#include "..\header files\ListMeasureTime.h";
 using namespace std;
 
 //! \brief задает значение по запросу.
@@ -13,19 +13,6 @@ int getinput(const string& prompt)
     return value;
 }
 
-//! \brief выводит результат поиска индекса.
-//! \param index индекс элемента, полученный в результате поиска.
-void printindexresult(int index) 
-{
-    if (index != -1)
-    {
-        cout << "element found at index: " << index << endl;
-    }
-    else
-    {
-        cout << "element not found." << endl;
-    }
-}
 
 void PrintList(List* list)
 {
@@ -52,7 +39,7 @@ int main()
 
     while (true)
     {
-        cout << "Current NodeList:\n ";
+        cout << "Current List:\n ";
         PrintList(myList);
 
 
@@ -62,9 +49,11 @@ int main()
         cout << "3. insert an element at the beginning\n";
         cout << "4. insert an element at the end\n";
         cout << "5. insert after a certain element\n";
-        cout << "6. sort list\n";
-        cout << "7. linear search for an element in an list\n";
-        cout << "8. binary search for an element in an array\n";
+        cout << "6. insert before a certain element\n";
+        cout << "7. sort list\n";
+        cout << "8. linear search for an element in an array\n";
+        cout << "9. measure insertion time\n";
+        cout << "10. measure deletion time\n";
         cout << "0. exit\n";
 
         int choice = getinput("your input: ");
@@ -104,28 +93,42 @@ int main()
         }
         case 6:
         {
-            SortList(myList);
-            cout << "The list is sorted." << endl;
+            int index = getinput("Enter index to insert: ");
+            int value = getinput("Enter the element to insert after a certain element: ");
+            InsertBefore(myList, index, value);
             break;
         }
         case 7:
         {
-            int value = getinput("enter a value for a linear search: ");
-            int index = LinearSearch(myList, value);
-
+            SortList(myList);
+            cout << "The list is sorted." << endl;
             break;
         }
         case 8:
         {
             int value = getinput("Enter a value for a binary search: ");
-            
-            
+
+
             if (LinearSearch(myList, value)) {
                 cout << "Element found\n";
             }
             else {
                 cout << "Element not found\n";
             }
+            break;
+        }
+        case 9:
+        {
+            int size = getinput("Enter the size for insertion measurement: ");
+            measureInsertion(myList, size);
+            cout << endl;
+            break;
+        }
+        case 10:
+        {
+            int size = getinput("Enter the size for deletion measurement: ");
+            measureDeletion(myList, size);
+            cout << endl;
             break;
         }
         case 0:

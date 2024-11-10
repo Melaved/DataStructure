@@ -1,27 +1,6 @@
-#include <iostream>
-using namespace std;
+#include "..\header files\DoubleLinkedList.h";
 
-struct Node 
-{
-	int Data;
-
-	Node* Next;
-
-	Node* Prev;
-
-	Node(int data) : Data(data), Next(nullptr), Prev(nullptr) {}
-};
-
-struct List 
-{
-	Node* Head;
-
-	Node* Tail;
-
-	List() : Head(nullptr), Tail(nullptr) {}
-};
-
-void ValidateList(List* list, int index) 
+ void ValidateList(List* list, int index)
 {
 	if (list == nullptr || index < 0) 
 	{
@@ -29,29 +8,30 @@ void ValidateList(List* list, int index)
 	}
 }
 
-void InsertNode(List* list, Node* newNode, Node* prevNode, Node* nextNode)
-{
-	newNode->Prev = prevNode;
-	newNode->Next = nextNode;
+ void InsertNode(List* list, Node* newNode, Node* prevNode, Node* nextNode)
+ {
+	 newNode->Prev = prevNode;
+	 newNode->Next = nextNode;
 
-	if (prevNode != nullptr) 
-	{
-		prevNode->Next = newNode;
-	}
-	else
-	{
-		list->Head = newNode;
-	}
+	 if (prevNode != nullptr)
+	 {
+		 prevNode->Next = newNode;
+	 }
+	 else
+	 {
+		 list->Head = newNode;
+	 }
 
-	if (nextNode != nullptr) 
-	{
-		nextNode->Prev = newNode;
-	}
-	else 
-	{
-		list->Tail = newNode;
-	}
-}
+	 if (nextNode != nullptr)
+	 {
+		 nextNode->Prev = newNode;
+	 }
+	 else
+	 {
+		 list->Tail = newNode;
+	 }
+ }
+
 
 
 void InsertAtBeginning(List* list, int data)
@@ -64,14 +44,19 @@ void InsertAtBeginning(List* list, int data)
 	}
 }
 
-void InsertAtEnd(List* list, int data) 
+void InsertAtEnd(List* list, int data)
 {
 	Node* newNode = new Node(data);
-	InsertNode(list, newNode, list->Tail, nullptr);
-
-	if (list->Tail != nullptr) 
+	if (list->Tail != nullptr)
 	{
-		list->Tail->Next = newNode;
+		InsertNode(list, newNode, list->Tail, nullptr);
+		list->Tail = newNode; 
+	}
+	else
+	{
+		
+		list->Head = newNode;
+		list->Tail = newNode;
 	}
 }
 
