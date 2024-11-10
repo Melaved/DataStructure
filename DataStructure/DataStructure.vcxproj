@@ -25,6 +25,7 @@
     <ClCompile Include="Source Files\Laboratory_Work_2.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Header Files\DoubleLinkedList.h" />
     <ClInclude Include="Header Files\DynamicArray.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

@@ -32,5 +32,8 @@
     <ClInclude Include="Header Files\DynamicArray.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="Header Files\DoubleLinkedList.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
