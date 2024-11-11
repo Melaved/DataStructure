@@ -2,12 +2,13 @@
 #include <chrono>
 
 
-//! brief Измеряет время вставки элементов в двусвязный список.
-//! param size Размер списка для вставки.
+//! \brief Measure elements insertion time in double linked list.
+//! \param myList Double Linked list data sctructure.
+//! \param size List size for insertion.
 void measureInsertion(List* mylist,int size);
 
-//! brief Измеряет время удаления элементов из двусвязного списка.
-//! param size Размер списка для удаления.
+//! brief Measure elements remove time in double linked list.
+//! \param myList Double Linked list data sctructure.
+//! param size List sizr for remove.
 void measureDeletion(List* myList, int size);
 
-\

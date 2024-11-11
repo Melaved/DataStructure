@@ -1,6 +1,6 @@
 #include "..\header files\DoubleLinkedList.h";
 
- void ValidateList(List* list, int index)
+	 void ValidateList(List* list, int index)
 {
 	if (list == nullptr || index < 0) 
 	{

@@ -3,8 +3,10 @@
 #include "..\header files\ListMeasureTime.h";
 using namespace std;
 
-//! \brief задает значение по запросу.
-//! \param prompt строка, содержащая текст запроса для ввода.
+//! brief Prompts the user for input and retrieves an integer value.
+//! param prompt A string containing the text of the prompt to display to 
+//! the user.
+//! return The integer value entered by the user.
 int getinput(const string& prompt)
 {
     int value;
@@ -13,7 +15,8 @@ int getinput(const string& prompt)
     return value;
 }
 
-
+//! brief Prints the elements of the double linked list to the console.
+//! param list Pointer to the list to be printed.
 void PrintList(List* list)
 {
     if (list == nullptr || list->Head == nullptr) 
@@ -109,10 +112,12 @@ int main()
             int value = getinput("Enter a value for a binary search: ");
 
 
-            if (LinearSearch(myList, value)) {
+            if (LinearSearch(myList, value))
+            {
                 cout << "Element found\n";
             }
-            else {
+            else
+            {
                 cout << "Element not found\n";
             }
             break;
