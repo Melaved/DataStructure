@@ -8,6 +8,26 @@ void ValidateList(List* list, int index)
 	}
 }
 
+Node* GetNodeAtIndex(List* list, int index)
+{
+	if (list == nullptr || list->Head == nullptr || index < 0)
+	{
+		return nullptr; 
+	}
+
+	Node* current = list->Head;
+	int currentIndex = 0;
+
+	while (current != nullptr && currentIndex < index)
+	{
+		current = current->Next;
+		currentIndex++;
+	}
+
+	return current; 
+}
+
+
  void InsertNode(List* list, Node* newNode, Node* prevNode, Node* nextNode)
  {
 	 newNode->Prev = prevNode;
@@ -32,8 +52,6 @@ void ValidateList(List* list, int index)
 		 list->Tail = newNode;
 	 }
  }
-
-
 
 void InsertAtBeginning(List* list, int data)
 {
@@ -72,19 +90,11 @@ void InsertBefore(List* list ,int index, int data)
 		return;
 	}
 
-	Node* current = list->Head;
+	Node* current = GetNodeAtIndex(list, index);
 
-	int currentIndex = 0;
-
-	while (current != nullptr && currentIndex < index) 
+	if (current == nullptr)
 	{
-		current = current->Next;
-		currentIndex++;
-	}
-
-	if (current == nullptr) 
-	{ 
-		return;
+		return; 
 	}
 
 	Node* newNode = new Node(data);
@@ -98,15 +108,7 @@ void InsertAfter(List* list,int index, int data)
 {
 	ValidateList(list, index);
 
-	Node* current = list->Head;
-
-	int currentIndex = 0;
-
-	while (current != nullptr && currentIndex < index)
-	{
-		current = current->Next;
-		currentIndex++;
-	}
+	Node* current = GetNodeAtIndex(list, index);
 
 	if (current == nullptr)
 	{
@@ -120,51 +122,66 @@ void InsertAfter(List* list,int index, int data)
 	current->Next = newNode;
 }
 
-
-void RemoveNode(List* list, Node* nodeToRemove) 
+void RemoveNode(List* list, Node* nodeToRemove)
 {
-	if (nodeToRemove->Prev)
+	if (nodeToRemove == nullptr)
 	{
-		nodeToRemove->Prev->Next = nodeToRemove->Next;
+		return; 
 	}
-	else 
+
+
+	if (nodeToRemove == list->Head)
 	{
 		list->Head = nodeToRemove->Next; 
+		if (list->Head != nullptr)
+		{
+			list->Head->Prev = nullptr;
+		}
+	}
+	else
+	{	
+		if (nodeToRemove->Prev)
+		{
+			nodeToRemove->Prev->Next = nodeToRemove->Next;
+		}
+
+	
+		if (nodeToRemove->Next)
+		{
+			nodeToRemove->Next->Prev = nodeToRemove->Prev;
+		}
 	}
 
-	if (nodeToRemove->Next)
+	if (nodeToRemove == list->Tail)
 	{
-		nodeToRemove->Next->Prev = nodeToRemove->Prev;
-	}
-	else 
-	{
-		list->Tail = nodeToRemove->Prev;
+		list->Tail = nodeToRemove->Prev; 
 	}
 
 	delete nodeToRemove;
 }
 
-void RemoveAtIndex(List* list, int index) 
+void RemoveAtIndex(List* list, int index)
 {
-	ValidateList(list, index);
-
-	Node* current = list->Head;
-
-	int currentIndex = 0;
-
-	while (current != nullptr && currentIndex < index)
-	{
-		current = current->Next;
-		currentIndex++;
-	}
-
-	if (current == nullptr)
+	if (list == nullptr || list->Head == nullptr || index < 0)
 	{
 		return;
 	}
 
+	Node* current = list->Head;
+
+	for (int currentIndex = 0; currentIndex < index; ++currentIndex)
+	{
+		if (current == nullptr)
+		{
+			return;
+		}
+		current = current->Next;
+	}
+
+	
 	RemoveNode(list, current);
 }
+
 
 void RemoveAtValue(List* list, int data)
 {

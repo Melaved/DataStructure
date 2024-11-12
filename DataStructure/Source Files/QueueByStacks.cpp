@@ -1,4 +1,5 @@
-#include "Stack.cpp"
+#include "..\Source Files\Stack.cpp";
+
 struct TwoStacksQueue 
 {
     Stack* stack1;
@@ -34,8 +35,8 @@ int Dequeue(TwoStacksQueue* queue)
 
     if (IsEmpty(queue->stack2)) 
     {
-        //std::cout << "Queue underflown";
-        return -1; // ћожно вернуть специальное значение
+      
+        return -1; 
     }
 
     return Pop(queue->stack2);

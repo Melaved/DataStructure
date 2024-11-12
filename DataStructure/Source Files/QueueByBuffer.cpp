@@ -27,5 +27,5 @@ int Dequeue(Queue* queue)
 
 void DeleteQueue(Queue* queue) 
 {
-    delete queue; // Удаляем очередь, освобождая память
+    delete queue; 
 }

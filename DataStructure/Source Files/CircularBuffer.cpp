@@ -17,37 +17,37 @@ struct CircularBuffer
     }
 };
 
-int FreeSpace(CircularBuffer* cb) 
+int FreeSpace(CircularBuffer* circularBuffer) 
 {
-    return cb->capacity - cb->size;
+    return circularBuffer->capacity - circularBuffer->size;
 }
 
-int UsedSpace(CircularBuffer* cb)
+int UsedSpace(CircularBuffer* circularBuffer)
 {
-    return cb->size;
+    return circularBuffer->size;
 }
 
-void AddToBuffer(CircularBuffer* cb, int data)
+void AddToBuffer(CircularBuffer* circularBuffer, int data)
 {
-    if (cb->size == cb->capacity) 
+    if (circularBuffer->size == circularBuffer->capacity)
     {
         //std::cout << "Buffer overflown";
         return;
     }
-    cb->buffer[cb->tail] = data;
-    cb->tail = (cb->tail + 1) % cb->capacity;
-    cb->size++;
+    circularBuffer->buffer[circularBuffer->tail] = data;
+    circularBuffer->tail = (circularBuffer->tail + 1) % circularBuffer->capacity;
+    circularBuffer->size++;
 }
 
-int RemoveFromBuffer(CircularBuffer* cb) 
+int RemoveFromBuffer(CircularBuffer* circularBuffer)
 {
-    if (cb->size == 0) 
+    if (circularBuffer->size == 0)
     {
         //std::cout << "Buffer underflown";
         return -1; // ћожно вернуть специальное значение
     }
-    int data = cb->buffer[cb->head];
-    cb->head = (cb->head + 1) % cb->capacity;
-    cb->size--;
+    int data = circularBuffer->buffer[circularBuffer->head];
+    circularBuffer->head = (circularBuffer->head + 1) % circularBuffer->capacity;
+    circularBuffer->size--;
     return data;
 }

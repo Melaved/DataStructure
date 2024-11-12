@@ -1,55 +1,55 @@
-struct Stack 
+struct stack 
 {
-	int* Buffer;
-	int BufferSize;
-	int Top;
-    Stack(int size) : BufferSize(size), Top(-1) 
+	int* buffer;
+	int buffersize;
+	int top;
+    stack(int size) : buffersize(size), top(-1) 
     {
-        Buffer = new int[BufferSize];
+        buffer = new int[buffersize];
     }
 
-    ~Stack() 
+    ~stack() 
     {
-        delete[] Buffer;
+        delete[] buffer;
     }
 };
 
-void Push(Stack* stack, int data) 
+void push(stack* stack, int data) 
 {
-    //Stack overflow check
-    if (stack->Top == stack->BufferSize - 1) 
+    //stack overflow check
+    if (stack->top == stack->buffersize - 1) 
     {
         return;
     }
-    stack->Buffer[++stack->Top] = data;
+    stack->buffer[++stack->top] = data;
 }
 
-void Push(Stack* stack, int data)
+void push(stack* stack, int data)
 {
-    if (stack->Top == stack->BufferSize - 1)
+    if (stack->top == stack->buffersize - 1)
     {
         return;
     }
-    stack->Buffer[++stack->Top] = data;
+    stack->buffer[++stack->top] = data;
 }
 
-int Pop(Stack* stack)
+int pop(stack* stack)
 {
-    if (stack->Top == -1)
+    if (stack->top == -1)
     {
         
-        return -1; // Можно вернуть специальное значение
+        return -1; // можно вернуть специальное значение
     }
-    return stack->Buffer[stack->Top--];
+    return stack->buffer[stack->top--];
 }
 
-bool IsEmpty(Stack* stack) 
+bool isempty(stack* stack) 
 {
-    return stack->Top == -1;
+    return stack->top == -1;
 }
 
-void Delete(Stack* stack)
+void delete(stack* stack)
 {
-    delete[] stack->Buffer;
+    delete[] stack->buffer;
     delete stack;
 }
