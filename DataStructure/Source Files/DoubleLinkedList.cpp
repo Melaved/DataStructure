@@ -1,6 +1,6 @@
 #include "..\header files\DoubleLinkedList.h";
 
-	 void ValidateList(List* list, int index)
+void ValidateList(List* list, int index)
 {
 	if (list == nullptr || index < 0) 
 	{
@@ -11,6 +11,7 @@
  void InsertNode(List* list, Node* newNode, Node* prevNode, Node* nextNode)
  {
 	 newNode->Prev = prevNode;
+
 	 newNode->Next = nextNode;
 
 	 if (prevNode != nullptr)
@@ -37,6 +38,7 @@
 void InsertAtBeginning(List* list, int data)
 {
 	Node* newNode = new Node(data);
+
 	InsertNode(list, newNode, nullptr, list->Head);
 
 	if (list->Head != nullptr) {
@@ -47,6 +49,7 @@ void InsertAtBeginning(List* list, int data)
 void InsertAtEnd(List* list, int data)
 {
 	Node* newNode = new Node(data);
+
 	if (list->Tail != nullptr)
 	{
 		InsertNode(list, newNode, list->Tail, nullptr);
@@ -54,7 +57,6 @@ void InsertAtEnd(List* list, int data)
 	}
 	else
 	{
-		
 		list->Head = newNode;
 		list->Tail = newNode;
 	}
@@ -71,6 +73,7 @@ void InsertBefore(List* list ,int index, int data)
 	}
 
 	Node* current = list->Head;
+
 	int currentIndex = 0;
 
 	while (current != nullptr && currentIndex < index) 
@@ -85,6 +88,7 @@ void InsertBefore(List* list ,int index, int data)
 	}
 
 	Node* newNode = new Node(data);
+
 	InsertNode(list, newNode, current->Prev, current);
 
 	current->Prev = newNode;
@@ -95,6 +99,7 @@ void InsertAfter(List* list,int index, int data)
 	ValidateList(list, index);
 
 	Node* current = list->Head;
+
 	int currentIndex = 0;
 
 	while (current != nullptr && currentIndex < index)
@@ -109,6 +114,7 @@ void InsertAfter(List* list,int index, int data)
 	}
 
 	Node* newNode = new Node(data);
+
 	InsertNode(list, newNode, current, current->Next);
 
 	current->Next = newNode;
@@ -143,6 +149,7 @@ void RemoveAtIndex(List* list, int index)
 	ValidateList(list, index);
 
 	Node* current = list->Head;
+
 	int currentIndex = 0;
 
 	while (current != nullptr && currentIndex < index)
@@ -170,6 +177,7 @@ void RemoveAtValue(List* list, int data)
 			RemoveNode(list, current);
 			return;
 		}
+
 		current = current->Next;
 	}
 }
@@ -182,6 +190,7 @@ bool LinearSearch(List* list, int data)
 	}
 	
 	Node* current = list->Head;
+
 	while(current != nullptr)
 	{
 		if (current->Data == data)
@@ -190,6 +199,7 @@ bool LinearSearch(List* list, int data)
 		}
 		current = current->Next;
 	}
+
 	return false;
 }
 
@@ -199,7 +209,9 @@ Node* Split(Node* head)
 	{
 		return 0;
 	}
+
 	Node* slow = head;
+
 	Node* fast = head->Next;
 
 	while (fast && fast->Next) 
@@ -207,12 +219,16 @@ Node* Split(Node* head)
 		slow = slow->Next;
 		fast = fast->Next->Next;
 	}
+
 	Node* secondPart = slow->Next;
+
 	slow->Next = nullptr;
+
 	if (secondPart != nullptr)
 	{
 		secondPart->Prev = nullptr;
 	}
+
 	return secondPart;
 }
 
@@ -260,6 +276,7 @@ Node* MergeSort(Node* head)
 	Node* second = Split(head);
 
 	head = MergeSort(head);
+
 	second = MergeSort(second);
 
 	return Merge(head, second);
@@ -270,10 +287,12 @@ void SortList(List* list)
 	list->Head = MergeSort(list->Head);
 
 	Node* current = list->Head;
+
 	while (current && current->Next)
 	{
 		current = current->Next;
 	}
+
 	list->Tail = current;
 }
 

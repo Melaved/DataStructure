@@ -1,18 +1,39 @@
 #include <iostream>
 #include "..\header files\DoubleLinkedList.h";
 #include "..\header files\ListMeasureTime.h";
+#include <string>
+#include <limits>
+
 using namespace std;
 
 //! brief Prompts the user for input and retrieves an integer value.
 //! param prompt A string containing the text of the prompt to display to 
 //! the user.
 //! return The integer value entered by the user.
-int getinput(const string& prompt)
+int GetInput(const string& prompt)
 {
     int value;
-    cout << prompt;
-    cin >> value;
-    return value;
+    string input;
+
+    while (true)
+    {
+        cout << prompt;
+        getline(cin, input);
+
+        try
+        {
+            value = stoi(input);
+            return value;
+        }
+        catch (const invalid_argument& e)
+        {
+            cout << "Invalid input. Please enter an integer value.\n";
+        }
+        catch (const out_of_range& e)
+        {
+            cout << "Input is out of range. Please enter a valid integer value.\n";
+        }
+    }
 }
 
 //! brief Prints the elements of the double linked list to the console.
@@ -59,57 +80,73 @@ int main()
         cout << "10. measure deletion time\n";
         cout << "0. exit\n";
 
-        int choice = getinput("your input: ");
+        int choice = GetInput("your input: ");
 
         switch (choice)
         {
         case 1:
         {
-            int index = getinput("Enter the index to delete: ");
+            int index = GetInput("Enter the index to delete: ");
+
             RemoveAtIndex(myList, index);
+
             break;
         }
         case 2:
         {
-            int value = getinput("Enter the value to delete: ");
+            int value = GetInput("Enter the value to delete: ");
+
             RemoveAtValue(myList, value);
+
             break;
         }
         case 3:
         {
-            int value = getinput("Enter the element to insert at the beginning: ");
+            int value = GetInput("Enter the element to insert at the beginning: ");
+
             InsertAtBeginning(myList, value);
+
             break;
         }
         case 4:
         {
-            int value = getinput("Enter the element to insert at the end: ");
+            int value = GetInput("Enter the element to insert at the end: ");
+
             InsertAtEnd(myList, value);
+
             break;
         }
         case 5:
         {
-            int index = getinput("Enter index to insert: ");
-            int value = getinput("Enter the element to insert after a certain element: ");
+            int index = GetInput("Enter index to insert: ");
+
+            int value = GetInput("Enter the element to insert after a certain element: ");
+
             InsertAfter(myList, index, value);
+
             break;
         }
         case 6:
         {
-            int index = getinput("Enter index to insert: ");
-            int value = getinput("Enter the element to insert after a certain element: ");
+            int index = GetInput("Enter index to insert: ");
+
+            int value = GetInput("Enter the element to insert after a certain element: ");
+
             InsertBefore(myList, index, value);
+
             break;
         }
         case 7:
         {
             SortList(myList);
+
             cout << "The list is sorted." << endl;
+
             break;
         }
         case 8:
         {
-            int value = getinput("Enter a value for a binary search: ");
+            int value = GetInput("Enter a value for a binary search: ");
 
 
             if (LinearSearch(myList, value))
@@ -120,25 +157,33 @@ int main()
             {
                 cout << "Element not found\n";
             }
+
             break;
         }
         case 9:
         {
-            int size = getinput("Enter the size for insertion measurement: ");
+            int size = GetInput("Enter the size for insertion measurement: ");
+
             measureInsertion(myList, size);
+
             cout << endl;
+
             break;
         }
         case 10:
         {
-            int size = getinput("Enter the size for deletion measurement: ");
+            int size = GetInput("Enter the size for deletion measurement: ");
+
             measureDeletion(myList, size);
+
             cout << endl;
+
             break;
         }
         case 0:
         {
             ClearList(myList);
+
             return 0;
         }
         default:

@@ -13,9 +13,11 @@ void measureInsertion(List* myList, int size)
     }
 
     auto end = chrono::high_resolution_clock::now();
+
     chrono::duration<double> duration = end - start;
 
     cout << "Insertion time for size " << size << ": " << duration.count() << " seconds";
+
     for (int i = 0; i < size; ++i) 
     {
         RemoveAtIndex(myList, 0); 
@@ -39,6 +41,7 @@ void measureDeletion(List* myList, int size)
     }
 
     auto end = chrono::high_resolution_clock::now();
+
     chrono::duration<double> duration = end - start;
 
     cout << "Deletion time for size " << size << ": " << duration.count() << " seconds";

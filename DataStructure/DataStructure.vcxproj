@@ -19,11 +19,15 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source Files\CircularBuffer.cpp" />
     <ClCompile Include="Source Files\DoubleLinkedList.cpp" />
     <ClCompile Include="Source Files\DynamicArray.cpp" />
     <ClCompile Include="Source Files\Laboratory_Work_1.cpp" />
     <ClCompile Include="Source Files\Laboratory_Work_2.cpp" />
     <ClCompile Include="Source Files\ListMeasureTime.cpp" />
+    <ClCompile Include="Source Files\QueueByBuffer.cpp" />
+    <ClCompile Include="Source Files\QueueByStacks.cpp" />
+    <ClCompile Include="Source Files\Stack.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header Files\DoubleLinkedList.h" />
