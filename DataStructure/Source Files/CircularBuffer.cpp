@@ -1,53 +1,44 @@
-struct CircularBuffer
+#include <stdexcept>
+#include "..\header files\CircularBuffer.h";
+
+void AddElement(CircularBuffer* buffer, int data) 
 {
-    int* buffer;
-    int head;
-    int tail;
-    int capacity;
-    int size;
-
-    CircularBuffer(int size) : capacity(size), head(0), tail(0), size(0)
-    {
-        buffer = new int[capacity];
-    }
-
-    ~CircularBuffer() 
-    {
-        delete[] buffer;
-    }
-};
-
-int FreeSpace(CircularBuffer* circularBuffer) 
-{
-    return circularBuffer->capacity - circularBuffer->size;
+	if (FreeSpace(buffer) == 0) 
+	{
+		buffer->Tail = data;
+		buffer->Tail = (buffer->Tail + 1) % buffer->BufferSize;
+	}
+	else
+	{
+		buffer->Head = data;
+		buffer->Head = (buffer->Head + 1) % buffer->BufferSize;
+	}
 }
 
-int UsedSpace(CircularBuffer* circularBuffer)
+int GetElement(CircularBuffer* buffer)
 {
-    return circularBuffer->size;
+	if (OccupiedSpace(buffer) == 0)
+	{
+		throw "Buffer is empty";
+	}
+	int result = buffer->Tail;
+	buffer->Tail = (buffer->Tail + 1) % buffer->BufferSize;
+	return result;
 }
 
-void AddToBuffer(CircularBuffer* circularBuffer, int data)
+int FreeSpace(CircularBuffer* buffer)
 {
-    if (circularBuffer->size == circularBuffer->capacity)
-    {
-        //std::cout << "Buffer overflown";
-        return;
-    }
-    circularBuffer->buffer[circularBuffer->tail] = data;
-    circularBuffer->tail = (circularBuffer->tail + 1) % circularBuffer->capacity;
-    circularBuffer->size++;
+	return (buffer->BufferSize + buffer->Head - buffer->Tail) % buffer->BufferSize;
 }
 
-int RemoveFromBuffer(CircularBuffer* circularBuffer)
+int OccupiedSpace(CircularBuffer* buffer)
 {
-    if (circularBuffer->size == 0)
-    {
-        //std::cout << "Buffer underflown";
-        return -1; // ћожно вернуть специальное значение
-    }
-    int data = circularBuffer->buffer[circularBuffer->head];
-    circularBuffer->head = (circularBuffer->head + 1) % circularBuffer->capacity;
-    circularBuffer->size--;
-    return data;
+	return (buffer->Tail - buffer->Head + buffer->BufferSize) % buffer->BufferSize;
+}
+
+
+void Delete(CircularBuffer* buffer)
+{
+	delete[] buffer->Buffer;
+	buffer->Buffer = nullptr;
 }

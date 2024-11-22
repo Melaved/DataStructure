@@ -1,55 +1,66 @@
-struct stack 
-{
-	int* buffer;
-	int buffersize;
-	int top;
-    stack(int size) : buffersize(size), top(-1) 
-    {
-        buffer = new int[buffersize];
-    }
+#include "..\header files\Stack.h";
+#include <stdexcept>
 
-    ~stack() 
-    {
-        delete[] buffer;
-    }
-};
-
-void push(stack* stack, int data) 
+void Push(Stack* stack, int data)
 {
-    //stack overflow check
-    if (stack->top == stack->buffersize - 1) 
-    {
-        return;
-    }
-    stack->buffer[++stack->top] = data;
+	if (IsFull(stack))
+	{
+		Resize(stack, stack->BufferSize * 2);
+	}
+
+	stack->Buffer[++stack->Top] = data;
+}
+int Pop(Stack* stack) 
+{
+	if (IsEmpty(stack)) 
+	{
+		throw ("Stack is empty");
+	}
+
+	return stack->Buffer[stack->Top--];
+
+	//??????????????уменьшение размера???????????????????????????
+	//int poppedValue = stack->Buffer[stack->Top--];
+
+	//
+	//if (stack->Top < stack->BufferSize / 4 && stack->BufferSize > 10) {
+	//	ResizeStack(stack, stack->BufferSize / 2);
+	//}
+
+	//return poppedValue;
 }
 
-void push(stack* stack, int data)
+bool IsEmpty(Stack* stack) 
 {
-    if (stack->top == stack->buffersize - 1)
-    {
-        return;
-    }
-    stack->buffer[++stack->top] = data;
+	return stack->Top == -1;
 }
 
-int pop(stack* stack)
+bool IsFull(Stack* stack) 
 {
-    if (stack->top == -1)
-    {
-        
-        return -1; // можно вернуть специальное значение
-    }
-    return stack->buffer[stack->top--];
+	return stack->Top == stack->BufferSize - 1;
 }
 
-bool isempty(stack* stack) 
+void Resize(Stack* stack, int newSize)
 {
-    return stack->top == -1;
+	if (newSize <= 0) 
+	{
+		return;
+	}
+
+	int* newBuffer = new int[newSize];
+	
+	for (int i = 0; i <= stack->Top && i < newSize; ++i) 
+	{
+		newBuffer[i] = stack->Buffer[i];
+	}
+
+	delete[] stack->Buffer;
+	stack->Buffer = newBuffer;
+	stack->BufferSize = newSize;
 }
 
-void delete(stack* stack)
+void Delete(Stack* stack) 
 {
-    delete[] stack->buffer;
-    delete stack;
+	delete[] stack->Buffer;
+	stack->Buffer = nullptr;
 }

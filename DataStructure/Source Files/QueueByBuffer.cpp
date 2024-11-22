@@ -1,31 +1,18 @@
-#include "CircularBuffer.cpp"
+#include "..\header files\CircularBuffer.h";
 
-struct Queue
-{
-    CircularBuffer* buffer;
-
-    Queue(int size) 
-    {
-        buffer = new CircularBuffer(size);
-    }
-
-    ~Queue()
-    {
-        delete buffer;
-    }
+struct Queue {
+    CircularBuffer Buffer; 
 };
 
-void Enqueue(Queue* queue, int data) 
-{
-    AddToBuffer(queue->buffer, data);
+
+void Enqueue(Queue* queue, int data) {
+    AddElement(&queue->Buffer, data);
 }
 
-int Dequeue(Queue* queue) 
-{
-    return RemoveFromBuffer(queue->buffer);
+int Dequeue(Queue* queue) {
+    return GetElement(&queue->Buffer);
 }
 
-void DeleteQueue(Queue* queue) 
-{
-    delete queue; 
+void DeleteQueue(Queue* queue) {
+    Delete(&queue->Buffer);
 }
