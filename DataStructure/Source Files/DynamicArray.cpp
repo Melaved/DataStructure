@@ -16,7 +16,7 @@ void Resize(DynamicArray* array, int capacity)
 
 DynamicArray* CreateArray()
 {
-	DynamicArray* array = new DynamicArray;
+	DynamicArray* array = new DynamicArray();
 	array->Size = 0;
 	array->Capacity = INITIAL_CAPACITY;
 	array->Array = new int[array->Capacity];

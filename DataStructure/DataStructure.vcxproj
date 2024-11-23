@@ -35,6 +35,8 @@
     <ClInclude Include="Header Files\DoubleLinkedList.h" />
     <ClInclude Include="Header Files\DynamicArray.h" />
     <ClInclude Include="Header Files\ListMeasureTime.h" />
+    <ClInclude Include="Header Files\QueueByBuffer.h" />
+    <ClInclude Include="Header Files\QueueByStacks.h" />
     <ClInclude Include="Header Files\Stack.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
