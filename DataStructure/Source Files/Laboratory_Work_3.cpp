@@ -287,16 +287,15 @@ int main()
                 case 1:
                 { 
                     int data = GetInput("Enter value to enqueue: ");
+                    if (FreeSpace(queueByBuffer->Buffer) == 0)
+                    {
+                        cout << "Queue is full, please dequeue element: " << endl;
+                    }
                     Enqueue(queueByBuffer, data);
                     break;
                 }
                 case 2: 
                 {
-                    if (FreeSpace(queueByBuffer->Buffer) == 0)
-                    {
-                        cout << "Queue is full, cannot enqueue element: " << endl;
-                        
-                    }
                     int dequeuedValue = Dequeue(queueByBuffer);
                     if (dequeuedValue != -1) 
                     {

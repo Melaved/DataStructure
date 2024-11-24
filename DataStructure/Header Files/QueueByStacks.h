@@ -1,30 +1,37 @@
 #include "../header files/Stack.h"
 
-// Structure representing a queue implemented using two stacks
+//! \brief Structure representing a queue implemented using two stacks
 struct QueueByStacks
-{
-    // Pointer to the input stack
+{ 
     Stack* InStack;
 
-    // Pointer to the output stack
     Stack* OutStack;
 };
 
-// Function to create a new instance of QueueByStacks
+//! \brief Function to create a new instance of QueueByStacks
+//! \return Pointer to the newly created QueueByStacks instance.
 QueueByStacks* CreateQueueByStacks();
 
+//! \brief Initializes the input and output stacks for the queue.
+//! param queue Pointer to the QueueByStacks instance to be initialized.
+//! param size The size of the stacks.
 void InitStackQueues(QueueByStacks* queue, int size);
+
+//! \brief Checks if the queue is empty.
+//! param queue Pointer to the QueueByStacks instance to check.
+//! \return True if the queue is empty, false otherwise.
 bool IsStackQueueEmpty(const QueueByStacks* queue);
-// Function to add an element to the queue
+
+//! \brief Adds an element to the end of the queue.
+//! param queue Pointer to the QueueByStacks instance where the element will be added.
+//! param data The value to be added to the queue.
 void Enqueue(QueueByStacks* queue, int data);
 
-// Function to remove and return the first element from the queue
+//! \brief Removes and returns the first element from the queue.
+//! param queue Pointer to the QueueByStacks instance from which the element will be removed.
+//! \return Value of the removed element.
 int Dequeue(QueueByStacks* queue);
 
-// Function to check if the queue is empty
-//bool IsEmptyQueue(QueueByStacks* queue);
-
-// Function to clear the queue by deleting both stacks
+//! \brief Clears the queue by deleting both stacks.
+//! param queue Pointer to the QueueByStacks instance that needs to be cleared.
 void ClearQueue(QueueByStacks* queue);
-
-

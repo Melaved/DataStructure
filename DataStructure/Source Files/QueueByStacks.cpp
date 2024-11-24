@@ -1,12 +1,6 @@
 #include <stdexcept>
 #include "..\header files\Stack.h"
-
-
-struct QueueByStacks 
-{
-    Stack* InStack;
-    Stack* OutStack;
-};
+#include "..\header files\QueueByStacks.h"
 
 
 QueueByStacks* CreateQueueByStacks() 

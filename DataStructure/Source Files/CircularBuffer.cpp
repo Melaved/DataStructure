@@ -51,28 +51,3 @@ void Delete(CircularBuffer* buffer) {
     delete[] buffer->Buffer;
     delete buffer;
 }
-
-
-//void ResizeBuffer(CircularBuffer* buffer, int newSize)
-//{
-//	if (newSize == buffer->BufferSize || newSize <= 0)
-//	{
-//		return;
-//	}
-//
-//	int* newBuffer = new int[newSize];
-//
-//	int currentIndex = buffer->Head;
-//	for (int i = 0; i < buffer->BufferSize; ++i)
-//	{
-//		newBuffer[i] = buffer->Buffer[currentIndex];
-//		currentIndex = (currentIndex + 1) % buffer->BufferSize;
-//	}
-//
-//	delete[] buffer->Buffer;
-//	buffer->Buffer = newBuffer;
-//	buffer->BufferSize = newSize;
-//	buffer->Head = 0;
-//	buffer->Tail = buffer->BufferSize - 1;
-//
-//}

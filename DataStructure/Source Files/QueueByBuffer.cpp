@@ -11,18 +11,20 @@ QueueByBuffer* CreateQueueByBuffer()
 
 void Enqueue(QueueByBuffer* queue, int data)
 {
-    AddElement(queue->Buffer, data);
+    if (FreeSpace(queue->Buffer) != 0) 
+    {
+        AddElement(queue->Buffer, data);
+    }
+    else 
+    {
+        return;
+    }
 }
 
 int Dequeue(QueueByBuffer* queue) 
 {
     return GetElement(queue->Buffer);
 }
-
-//void ResizeQueue(QueueByBuffer* queue, int newSize)
-//{
-//    ResizeBuffer(&queue->Buffer, newSize);
-//}
 
 void DeleteQueue(QueueByBuffer* queue)
 {
