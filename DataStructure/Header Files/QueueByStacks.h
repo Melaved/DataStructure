@@ -13,6 +13,8 @@ struct QueueByStacks
 // Function to create a new instance of QueueByStacks
 QueueByStacks* CreateQueueByStacks();
 
+void InitStackQueues(QueueByStacks* queue, int size);
+bool IsStackQueueEmpty(const QueueByStacks* queue);
 // Function to add an element to the queue
 void Enqueue(QueueByStacks* queue, int data);
 

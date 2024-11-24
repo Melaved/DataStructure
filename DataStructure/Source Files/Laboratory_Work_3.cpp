@@ -1,59 +1,52 @@
 #include <iostream>
-#include "..\header files\Stack.h";
-#include "..\header files\CircularBuffer.h";
-#include "..\header files\QueueByBuffer.h";
-#include "..\header files\QueueByStacks.h";
+#include "..\header files\Stack.h"
+#include "..\header files\CircularBuffer.h"
+#include "..\header files\QueueByBuffer.h"
+#include "..\header files\QueueByStacks.h"
 #include <string>
 using namespace std;
 
+//! \brief Display main menu
 void ShowMainMenu() 
 {
     cout << "Main Menu:\n";
     cout << "1. Stack\n";
     cout << "2. Circular Buffer\n";
     cout << "3. Queue from Circular Buffer\n";
+    cout << "4. Queue from Stacks\n";
     cout << "0. Exit\n";
 }
 
+//! \brief Display stack menu
 void ShowStackMenu() 
 {
     cout << "Stack Menu:\n";
     cout << "1. Push\n";
     cout << "2. Pop\n";
     cout << "3. Resize Stack\n";
-    cout << "4. Check if Empty\n";
-    cout << "5. Check if Full\n";
     cout << "0. Back to Main Menu\n";
 }
 
+//! \brief Display circular buffer menu
 void ShowCircularBufferMenu() 
 {
     cout << "Circular Buffer Menu:\n";
     cout << "1. Add to Buffer\n";
     cout << "2. Remove from Buffer\n";
-    cout << "3. Get Free Space\n";
-    cout << "4. Get Used Space\n";
     cout << "0. Back to Main Menu\n";
 }
 
-void ShowQueueByBufferMenu() 
+//! \brief Display queue menu
+void ShowQueueMenu() 
 {
     cout << "Queue Menu:\n";
     cout << "1. Enqueue\n";
     cout << "2. Dequeue\n";
-    cout << "3. Resize Queue\n";
     cout << "0. Back to Main Menu\n";
 }
 
-void ShowQueueByStacksMenu()
-{
-    cout << "Queue Menu:\n";
-    cout << "1. Enqueue\n";
-    cout << "2. Dequeue\n";
-    cout << "3. Resize Queue\n";
-    cout << "0. Back to Main Menu\n";
-}
-
+//! \brief Prints the elements of the stack list to the console.
+//! \param stack Pointer to the stack to be printed.
 void PrintStack(Stack* stack) 
 {
     if (IsEmpty(stack)) 
@@ -70,6 +63,8 @@ void PrintStack(Stack* stack)
     cout << "\n";
 }
 
+//! \brief Prints the elements of the circular buffer to the console.
+//! \param buffer Pointer to the buffer to be printed.
 void PrintCircularBuffer(CircularBuffer* buffer)
 {
     if (OccupiedSpace(buffer) == 0) 
@@ -89,7 +84,9 @@ void PrintCircularBuffer(CircularBuffer* buffer)
     cout << "\n";
 }
 
-void PrintQueue(QueueByBuffer* queue) 
+//! \brief Prints the elements of the queue by circular buffer list to the console.
+//! \param queue Pointer to the queue to be printed.
+void PrintQueueByBuffer(QueueByBuffer* queue) 
 {
     if (!queue->Buffer)
     {
@@ -99,11 +96,42 @@ void PrintQueue(QueueByBuffer* queue)
 
     PrintCircularBuffer(queue->Buffer);
 }
+//! \brief Prints the elements of queue by two stacks to the console.
+//! \param queue Pointer to the queue to be printed.
+void PrintQueueByStacks(QueueByStacks* queue) 
+{
+    Stack* tempStack = CreateStack();
+    cout << "Queue elements: ";
 
-//! brief Prompts the user for input and retrieves an integer value.
-//! param prompt A string containing the text of the prompt to display to 
+    while (!IsEmpty(queue->OutStack)) 
+    {
+        int element = Pop(queue->OutStack);
+        std::cout << element << ' ';
+        Push(tempStack, element);
+    }
+   
+    while (!IsEmpty(queue->InStack)) 
+    {
+        int element = Pop(queue->InStack);
+        cout << element << ' ';
+        Push(tempStack, element);
+    }
+
+    while (!IsEmpty(tempStack))
+    {
+        int element = Pop(tempStack);
+        Push(queue->OutStack, element);
+    }
+
+    Delete(tempStack);
+
+    cout << '\n';
+}
+
+//! \brief Prompts the user for input and retrieves an integer value.
+//! \param prompt A string containing the text of the prompt to display to 
 //! the user.
-//! return The integer value entered by the user.
+//! \return The integer value entered by the user.
 int GetInput(const string& prompt)
 {
     int value;
@@ -130,6 +158,7 @@ int GetInput(const string& prompt)
     }
 }
 
+//! \brief Clear any menu
 void ClearScreen() 
 {
 #ifdef _WIN32
@@ -143,7 +172,8 @@ int main()
 {
     Stack* stack = CreateStack();
     CircularBuffer* circularBuffer = CreateCircularBuffer();
-    QueueByBuffer* queue= CreateQueueByBuffer();
+    QueueByBuffer* queueByBuffer= CreateQueueByBuffer();
+    QueueByStacks* queueByStacks = CreateQueueByStacks();
 
     while (true) 
     {
@@ -183,22 +213,11 @@ int main()
                 }
                 case 3: 
                 {
-                    int newSize;
-                    cout << "Enter new size: ";
-                    cin >> newSize;
+                    int newSize = GetInput("Enter new size: ");
                     Resize(stack, newSize);
                     break;
                 }
-                case 4: 
-                {
-                    cout << (IsEmpty(stack) ? "Stack is empty." : "Stack is not empty.") << endl;
-                    break;
-                }
-                case 5:
-                {
-                    cout << (IsFull(stack) ? "Stack is full." : "Stack is not full.") << endl;
-                    break;
-                }
+           
                 case 0: 
                     goto mainMenuReturnStack;
                 default:
@@ -219,6 +238,8 @@ int main()
                 ClearScreen();
                 ShowCircularBufferMenu();
                 PrintCircularBuffer(circularBuffer);
+                cout << "Free space: " << FreeSpace(circularBuffer) << endl;
+                cout << "Used space: " << OccupiedSpace(circularBuffer) << endl;
 
                 int cbChoice = GetInput("Your input: ");
 
@@ -226,9 +247,7 @@ int main()
                 {
                 case 1: 
                 { 
-                    int data;
-                    cout << "Enter value to add: ";
-                    cin >> data;
+                    int data = GetInput("Enter value to add: ");
                     AddElement(circularBuffer, data);
                     break;
                 }
@@ -241,25 +260,14 @@ int main()
                     }
                     break;
                 }
-                case 3: 
-                { 
-                    cout << "Free space: " << FreeSpace(circularBuffer) << endl;
-                    break;
-                }
-                case 4: 
-                {
-                    cout << "Used space: " << OccupiedSpace(circularBuffer) << endl;
-                    break;
-                }
                 case 0:
                     goto mainMenuReturnCB;
                 default:
-                    std::cout << "Invalid choice! Try again." << std::endl;
+                    cout << "Invalid choice! Try again." << endl;
                 }
-
-                std::cout << "Press Enter to continue...";
-                std::cin.ignore();
-                std::cin.get();
+                cout << "Press Enter to continue...";
+                cin.ignore();
+                cin.get();
             }
         mainMenuReturnCB:;
             break;
@@ -269,64 +277,93 @@ int main()
             while (true) 
             {
                 ClearScreen();
-                ShowQueueByBufferMenu();
-                PrintQueue(queue);
+                ShowQueueMenu();
+                PrintQueueByBuffer(queueByBuffer);
 
-                int queueChoice = GetInput("Your input: ");
+                int queueByBufferChoice = GetInput("Your input: ");
  
-                switch (queueChoice) 
+                switch (queueByBufferChoice) 
                 {
                 case 1:
                 { 
-                    int data;
-                    cout << "Enter value to enqueue: ";
-                    cin >> data;
-                    Enqueue(queue, data);
+                    int data = GetInput("Enter value to enqueue: ");
+                    Enqueue(queueByBuffer, data);
                     break;
                 }
                 case 2: 
                 {
-                    int dequeuedValue = Dequeue(queue);
+                    if (FreeSpace(queueByBuffer->Buffer) == 0)
+                    {
+                        cout << "Queue is full, cannot enqueue element: " << endl;
+                        
+                    }
+                    int dequeuedValue = Dequeue(queueByBuffer);
                     if (dequeuedValue != -1) 
                     {
                         cout << "Dequeued: " << dequeuedValue << endl;
                     }
                     break;
                 }
-                case 3:
-                {
-                    int newSize;
-                    cout << "Enter new size: ";
-                    cin >> newSize;
-                    //ResizeQueue(queue, newSize);
-                    break;
-                }
+               
                 case 0:
-                    goto mainMenuReturnQueue;
+                    goto mainMenuReturnQueueByBuffer;
                 default:
                     cout << "Invalid choice! Try again." << endl;
                 }
-
                 cout << "Press Enter to continue...";
                 cin.ignore();
                 cin.get();
             }
-        mainMenuReturnQueue:;
+        mainMenuReturnQueueByBuffer:;
             break;
         }
-        case 0: // Exit
+        case 4:
+        {
+            while (true)
+            {
+                ClearScreen();
+                ShowQueueMenu();
+                PrintQueueByStacks(queueByStacks);
+
+                int queueByStacksChoice = GetInput("Your input: ");
+
+                switch (queueByStacksChoice)
+                {
+                case 1:
+                {
+                    int data = GetInput("Enter value to enqueue: ");
+                    Enqueue(queueByStacks, data);
+                    break;
+                }
+                case 2:
+                {
+                    int dequeuedValue = Dequeue(queueByStacks);
+                    cout << "Dequeued: " << dequeuedValue << endl;
+                    break;
+                }
+              
+                case 0:
+                    goto mainMenuReturnQueueByStacks;
+                default:
+                    cout << "Invalid choice! Try again." << endl;
+                }
+                cout << "Press Enter to continue...";
+                cin.ignore();
+                cin.get();
+   
+            }
+        mainMenuReturnQueueByStacks:;
+            break;
+        }
+        case 0: 
             Delete(stack);
             Delete(circularBuffer);
-            DeleteQueue(queue);
+            DeleteQueue(queueByBuffer);
+            ClearQueue(queueByStacks);
             return 0;
         default:
             cout << "Invalid choice! Try again." << endl;
         }
 
-        cout << "Press Enter to continue...";
-        cin.ignore();
-        cin.get();
     }
-
-    return 0;
 }

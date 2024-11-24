@@ -1,13 +1,15 @@
-
 #include <stdexcept>
 #include "..\header files\Stack.h"
-struct QueueByStacks
+
+
+struct QueueByStacks 
 {
     Stack* InStack;
     Stack* OutStack;
 };
 
-QueueByStacks* CreateQueueByStacks()
+
+QueueByStacks* CreateQueueByStacks() 
 {
     QueueByStacks* queue = new QueueByStacks();
     queue->InStack = CreateStack();
@@ -15,38 +17,50 @@ QueueByStacks* CreateQueueByStacks()
     return queue;
 }
 
-void Enqueue(QueueByStacks* queue, int data)
+
+void Enqueue(QueueByStacks* queue, int data) 
 {
+    if (queue == nullptr || queue->InStack == nullptr) 
+    {
+        throw std::runtime_error("Queue is not initialized.");
+        return;
+    }
     Push(queue->InStack, data);
 }
+
 
 int Dequeue(QueueByStacks* queue)
 {
     if (IsEmpty(queue->OutStack))
     {
-        while (!IsEmpty(queue->InStack))
+        while (!IsEmpty(queue->InStack)) 
         {
             Push(queue->OutStack, Pop(queue->InStack));
         }
-
-        if (IsEmpty(queue->OutStack))
-        {
-            throw std::runtime_error("Queue is empty.");
-        }
+    }
+    if (IsEmpty(queue->OutStack))
+    {  
+        throw std::runtime_error("Queue is empty");
     }
 
     return Pop(queue->OutStack);
 }
 
-//bool IsEmptyQueue(QueueByStacks* queue)
-//{
-//    return IsEmpty(queue->InStack) && IsEmpty(queue->OutStack);
-//}
-
-void ClearQueue(QueueByStacks* queue)
+void ClearQueue(QueueByStacks* queue) 
 {
-    delete queue->InStack;
-    delete queue->OutStack;
-    queue->InStack = nullptr;
-    queue->OutStack = nullptr;
+    if (queue != nullptr)
+    {
+        if (queue->InStack != nullptr) 
+        {
+            Delete(queue->InStack);
+            queue->InStack = nullptr;
+        }
+        if (queue->OutStack != nullptr) 
+        {
+            Delete(queue->OutStack);
+            queue->OutStack = nullptr;
+        }
+        delete queue;
+    }
 }
+

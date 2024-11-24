@@ -8,42 +8,50 @@ CircularBuffer* CreateCircularBuffer()
     buffer->Buffer = new int[buffer->BufferSize];
     buffer->Head = 0;
     buffer->Tail = 0;
+    buffer->Count = 0; 
     return buffer;
 }
 
-void AddElement(CircularBuffer* buffer, int data)
+void AddElement(CircularBuffer* buffer, int data) 
 {
-    buffer->Buffer[buffer->Tail] = data; 
+    if (buffer->Count == buffer->BufferSize)
+    {
+        buffer->Head = (buffer->Head + 1) % buffer->BufferSize; 
+    }
+    else 
+    {
+        buffer->Count++;
+    }
+
+    buffer->Buffer[buffer->Tail] = data;
     buffer->Tail = (buffer->Tail + 1) % buffer->BufferSize; 
 }
 
-int GetElement(CircularBuffer* buffer)
+int GetElement(CircularBuffer* buffer) 
 {
-    if (OccupiedSpace(buffer) == 0)
-    {
+    if (buffer->Count == 0) {
         throw std::out_of_range("Buffer is empty");
     }
 
     int result = buffer->Buffer[buffer->Head];
-    buffer->Head = (buffer->Head + 1) % buffer->BufferSize; 
+    buffer->Head = (buffer->Head + 1) % buffer->BufferSize;
+    buffer->Count--;
     return result;
 }
 
-int FreeSpace(CircularBuffer* buffer)
-{
-    return (buffer->BufferSize + buffer->Head - buffer->Tail) % buffer->BufferSize;
+int FreeSpace(CircularBuffer* buffer) {
+    return buffer->BufferSize - buffer->Count;
 }
 
-int OccupiedSpace(CircularBuffer* buffer)
-{
-    return (buffer->Tail - buffer->Head + buffer->BufferSize) % buffer->BufferSize;
+int OccupiedSpace(CircularBuffer* buffer) {
+    return buffer->Count; 
 }
 
-void Delete(CircularBuffer* buffer)
-{
+void Delete(CircularBuffer* buffer) {
     delete[] buffer->Buffer;
-    buffer->Buffer = nullptr;
+    delete buffer;
 }
+
 
 //void ResizeBuffer(CircularBuffer* buffer, int newSize)
 //{

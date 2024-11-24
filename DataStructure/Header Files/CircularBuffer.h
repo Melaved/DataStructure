@@ -4,9 +4,10 @@ struct CircularBuffer
 	int Tail;
 	int Head;
 	int BufferSize;
+	int Count;
 };
 
-const int INITIAL_BUFFER_SIZE = 7;
+const int INITIAL_BUFFER_SIZE = 8;
 CircularBuffer* CreateCircularBuffer();
 void AddElement(CircularBuffer* buffer, int data);
 int GetElement(CircularBuffer* buffer);

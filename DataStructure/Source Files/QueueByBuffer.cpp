@@ -1,5 +1,6 @@
 #include "..\header files\CircularBuffer.h";
 #include "..\header files\QueueByBuffer.h";
+#include <stdexcept>;
 
 QueueByBuffer* CreateQueueByBuffer()
 {
