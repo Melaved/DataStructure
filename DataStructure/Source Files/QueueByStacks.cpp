@@ -14,11 +14,6 @@ QueueByStacks* CreateQueueByStacks()
 
 void Enqueue(QueueByStacks* queue, int data) 
 {
-    if (queue == nullptr || queue->InStack == nullptr) 
-    {
-        throw std::runtime_error("Queue is not initialized.");
-        return;
-    }
     Push(queue->InStack, data);
 }
 
@@ -34,10 +29,12 @@ int Dequeue(QueueByStacks* queue)
     }
     if (IsEmpty(queue->OutStack))
     {  
-        throw std::runtime_error("Queue is empty");
+        return 0;
     }
-
-    return Pop(queue->OutStack);
+    else 
+    {
+        return Pop(queue->OutStack);
+    }
 }
 
 void ClearQueue(QueueByStacks* queue) 

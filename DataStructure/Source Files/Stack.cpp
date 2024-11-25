@@ -5,7 +5,7 @@
 Stack* CreateStack()
 {
     Stack* stack = new Stack();
-    stack->BufferSize = 5;
+    stack->BufferSize = 4;
     stack->Buffer = new int[stack->BufferSize];
     stack->Top = -1;
     return stack;
@@ -25,12 +25,14 @@ int Pop(Stack* stack)
 {
     if (IsEmpty(stack))
     {
-        throw std::runtime_error("Stack is empty");
+        return 0;
     }
-
-    int result = stack->Buffer[stack->Top];
-    stack->Top--;
-    return result;
+    else 
+    {
+        int result = stack->Buffer[stack->Top];
+        stack->Top--;
+        return result;
+    }
 }
 
 bool IsEmpty(Stack* stack)

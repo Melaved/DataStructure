@@ -29,14 +29,17 @@ void AddElement(CircularBuffer* buffer, int data)
 
 int GetElement(CircularBuffer* buffer) 
 {
-    if (buffer->Count == 0) {
-        throw std::out_of_range("Buffer is empty");
+    if (buffer->Count == 0) 
+    {
+        return 0;
     }
-
-    int result = buffer->Buffer[buffer->Head];
-    buffer->Head = (buffer->Head + 1) % buffer->BufferSize;
-    buffer->Count--;
-    return result;
+    else
+    {
+        int result = buffer->Buffer[buffer->Head];
+        buffer->Head = (buffer->Head + 1) % buffer->BufferSize;
+        buffer->Count--;
+        return result;
+    }
 }
 
 int FreeSpace(CircularBuffer* buffer) {
