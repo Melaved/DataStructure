@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source Files\CircularBuffer.cpp" />
+    <ClCompile Include="Source Files\CircularBuffer_IO.cpp" />
     <ClCompile Include="Source Files\DoubleLinkedList.cpp" />
     <ClCompile Include="Source Files\DynamicArray.cpp" />
     <ClCompile Include="Source Files\Laboratory_Work_1.cpp" />
@@ -27,17 +28,24 @@
     <ClCompile Include="Source Files\Laboratory_Work_3.cpp" />
     <ClCompile Include="Source Files\ListMeasureTime.cpp" />
     <ClCompile Include="Source Files\QueueByBuffer.cpp" />
+    <ClCompile Include="Source Files\Queue_IO.cpp" />
     <ClCompile Include="Source Files\QueueByStacks.cpp" />
     <ClCompile Include="Source Files\Stack.cpp" />
+    <ClCompile Include="Source Files\Stack_IO.cpp" />
+    <ClCompile Include="Source Files\SupportMethods.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header Files\CircularBuffer.h" />
+    <ClInclude Include="Header Files\CircularBuffer_IO.h" />
     <ClInclude Include="Header Files\DoubleLinkedList.h" />
     <ClInclude Include="Header Files\DynamicArray.h" />
     <ClInclude Include="Header Files\ListMeasureTime.h" />
     <ClInclude Include="Header Files\QueueByBuffer.h" />
     <ClInclude Include="Header Files\QueueByStacks.h" />
+    <ClInclude Include="Header Files\Queue_IO.h" />
     <ClInclude Include="Header Files\Stack.h" />
+    <ClInclude Include="Header Files\Stack_IO.h" />
+    <ClInclude Include="Header Files\SupportMethods.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

@@ -5,7 +5,7 @@
 Stack* CreateStack()
 {
     Stack* stack = new Stack();
-    stack->BufferSize = 4;
+    stack->BufferSize = INITIAL_STACK_SIZE;
     stack->Buffer = new int[stack->BufferSize];
     stack->Top = -1;
     return stack;
@@ -15,7 +15,7 @@ void Push(Stack* stack, int data)
 {
     if (IsFull(stack))
     {
-        Resize(stack, stack->BufferSize * 2);
+        Resize(stack, stack->BufferSize * GROWTH_FACTOR);
     }
 
     stack->Buffer[++stack->Top] = data;

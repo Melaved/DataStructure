@@ -1,3 +1,4 @@
+#pragma once
 //! \brief Structure for a queue implemented using a circular buffer.
 struct QueueByBuffer
 {

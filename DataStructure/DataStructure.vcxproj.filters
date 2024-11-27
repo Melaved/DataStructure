@@ -16,6 +16,9 @@
     <Filter Include="Исходные файлы\DataStructures">
       <UniqueIdentifier>{5e84b0ef-1ace-4d2c-a9c6-4d6cecf2cde2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\Input/output">
+      <UniqueIdentifier>{736dfb49-584b-4860-9396-8b942585116f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source Files\Laboratory_Work_1.cpp">
@@ -48,6 +51,18 @@
     <ClCompile Include="Source Files\Laboratory_Work_3.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="Source Files\Stack_IO.cpp">
+      <Filter>Исходные файлы\Input/output</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Files\CircularBuffer_IO.cpp">
+      <Filter>Исходные файлы\Input/output</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Files\Queue_IO.cpp">
+      <Filter>Исходные файлы\Input/output</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Files\SupportMethods.cpp">
+      <Filter>Исходные файлы\Input/output</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header Files\DynamicArray.h">
@@ -69,6 +84,18 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="Header Files\QueueByStacks.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Header Files\CircularBuffer_IO.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Header Files\Queue_IO.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Header Files\Stack_IO.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Header Files\SupportMethods.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

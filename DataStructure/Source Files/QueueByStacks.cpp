@@ -11,12 +11,10 @@ QueueByStacks* CreateQueueByStacks()
     return queue;
 }
 
-
 void Enqueue(QueueByStacks* queue, int data) 
 {
     Push(queue->InStack, data);
 }
-
 
 int Dequeue(QueueByStacks* queue)
 {

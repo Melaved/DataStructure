@@ -7,6 +7,11 @@ struct Stack
     int Top;            
 };
 
+const int INITIAL_STACK_SIZE = 4;
+
+const int GROWTH_FACTOR = 2;
+
+
 //! \brief Creates and initializes a stack.
 //! \return Pointer to the created stack.
 Stack* CreateStack();

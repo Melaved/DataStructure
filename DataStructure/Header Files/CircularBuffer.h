@@ -1,3 +1,5 @@
+#pragma once
+
 //! \brief Circular buffer structure.
 struct CircularBuffer
 {

@@ -42,15 +42,18 @@ int GetElement(CircularBuffer* buffer)
     }
 }
 
-int FreeSpace(CircularBuffer* buffer) {
+int FreeSpace(CircularBuffer* buffer) 
+{
     return buffer->BufferSize - buffer->Count;
 }
 
-int OccupiedSpace(CircularBuffer* buffer) {
+int OccupiedSpace(CircularBuffer* buffer) 
+{
     return buffer->Count; 
 }
 
-void Delete(CircularBuffer* buffer) {
+void Delete(CircularBuffer* buffer) 
+{
     delete[] buffer->Buffer;
     delete buffer;
 }
