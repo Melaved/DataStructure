@@ -76,6 +76,6 @@ void StackChoice(Stack* stack)
         default:
             cout << "Invalid choice! Try again." << endl;
         }
-        //ContinueCheck();
+        ContinueCheck();
     }
 }

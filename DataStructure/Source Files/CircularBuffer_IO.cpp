@@ -72,5 +72,6 @@ void CircularBufferShoice(CircularBuffer* buffer)
         default:
             cout << "Invalid choice! Try again." << endl;
         }
+        ContinueCheck();
     }
 }

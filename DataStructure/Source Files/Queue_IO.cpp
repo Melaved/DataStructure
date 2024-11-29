@@ -96,6 +96,7 @@ void QueueByBufferChoice(QueueByBuffer* queueByBuffer)
         default:
             cout << "Invalid choice! Try again." << endl;
         }
+        ContinueCheck();
     }
 }
 
@@ -137,5 +138,6 @@ void QueueByStacksChoice(QueueByStacks* queueByStacks)
         default:
             cout << "Invalid choice! Try again." << endl;
         }
+        ContinueCheck();
     }
 }
