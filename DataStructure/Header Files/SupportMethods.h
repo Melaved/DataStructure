@@ -15,4 +15,5 @@ int GetInput(const string& prompt);
 //! \brief Clear any menu
 void ClearScreen();
 
+//! \brief Check continue to the next menu.
 void ContinueCheck();

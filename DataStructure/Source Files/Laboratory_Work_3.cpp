@@ -33,12 +33,14 @@ int main()
                 StackChoice(stack);
                 break;
             }
+
             case 2: 
             { 
 
                 CircularBufferShoice(circularBuffer);
                 break;
             }
+
             case 3: 
             {
 
@@ -46,6 +48,7 @@ int main()
                 break;
 
             }
+
             case 4:
             {
 
@@ -64,6 +67,5 @@ int main()
             default:
                 cout << "Invalid choice! Try again." << endl;
             }
-
     }
 }
