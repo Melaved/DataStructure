@@ -3,6 +3,7 @@
 #include "..\header files\QueueByBuffer.h"
 #include "..\header files\QueueByStacks.h"
 #include "../Header Files/SupportMethods.h"
+#include "../Menu.h"
 using namespace std;
 
 void ShowQueueMenu()
@@ -24,40 +25,57 @@ void PrintQueueByBuffer(QueueByBuffer* queue)
     PrintCircularBuffer(queue->Buffer);
 }
 
+#include <iostream>
+
+void PrintStackForQueue(Stack* stack) {
+    if (stack == nullptr) {
+        std::cout << "Stack is null." << std::endl;
+        return;
+    }
+
+    if (IsEmpty(stack)) {
+        std::cout << "Stack is empty." << std::endl;
+        return;
+    }
+
+    Stack* temp = CreateStack();
+
+
+    std::cout << "Stack contents: ";
+    while (!IsEmpty(stack)) {
+        int value = Pop(stack);
+        std::cout << value << " ";
+        Push(temp, value); 
+    }
+    cout << endl;
+
+    while (!IsEmpty(temp)) 
+    {
+        Push(stack, Pop(temp));
+    }
+
+    Delete(temp); 
+}
+
 void PrintQueueByStacks(QueueByStacks* queue)
 {
-    Stack* tempStack = CreateStack();
-    cout << "Queue elements: ";
-
-    while (!IsEmpty(queue->OutStack))
+    if (queue == nullptr) 
     {
-        int element = Pop(queue->OutStack);
-        cout << element << ' ';
-        Push(tempStack, element);
+        cout << "Queue is null." << endl;
+        return;
     }
 
-    while (!IsEmpty(queue->InStack))
-    {
-        int element = Pop(queue->InStack);
-        cout << element << ' ';
-        Push(tempStack, element);
-    }
+    cout << "InStack: ";
+    PrintStackForQueue(queue->InStack);
 
-    while (!IsEmpty(tempStack))
-    {
-        int element = Pop(tempStack);
-        Push(queue->OutStack, element);
-    }
-
-    Delete(tempStack);
-
-    cout << '\n';
+    cout << "OutStack: ";
+    PrintStackForQueue(queue->OutStack);
 }
+
 
 void QueueByBufferChoice(QueueByBuffer* queueByBuffer)
 {
-    bool running = true;
-    while (running)
+    while (true)
     {
         ClearScreen();
         ShowQueueMenu();
@@ -91,7 +109,8 @@ void QueueByBufferChoice(QueueByBuffer* queueByBuffer)
 
                 ClearScreen();
                 ShowMainMenu();
-                running = false;
+                return;
+                break;
 
         default:
             cout << "Invalid choice! Try again." << endl;
@@ -102,8 +121,7 @@ void QueueByBufferChoice(QueueByBuffer* queueByBuffer)
 
 void QueueByStacksChoice(QueueByStacks* queueByStacks)
 {
-    bool running = true;
-    while (running)
+    while (true)
     {
         ClearScreen();
         ShowQueueMenu();
@@ -132,8 +150,8 @@ void QueueByStacksChoice(QueueByStacks* queueByStacks)
 
                 ClearScreen();
                 ShowMainMenu();
-                running = false;
                 return;
+                break;
 
         default:
             cout << "Invalid choice! Try again." << endl;

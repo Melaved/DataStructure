@@ -1,6 +1,7 @@
 #include <iostream>
 #include "..\header files\CircularBuffer.h"
 #include "../Header Files/SupportMethods.h"
+#include "../Menu.h"
 
 using namespace std;
 
@@ -32,8 +33,7 @@ void PrintCircularBuffer(CircularBuffer* buffer)
 
 void CircularBufferShoice(CircularBuffer* buffer) 
 {
-    bool running = true;
-    while (running)
+    while (true)
     {
         ClearScreen();
         ShowCircularBufferMenu();
@@ -66,8 +66,8 @@ void CircularBufferShoice(CircularBuffer* buffer)
 
                 ClearScreen();
                 ShowMainMenu();
-                running = false;
                 return;
+                break;
 
         default:
             cout << "Invalid choice! Try again." << endl;

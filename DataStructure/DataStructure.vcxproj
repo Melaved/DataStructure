@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Source Files\CircularBuffer.cpp" />
     <ClCompile Include="Source Files\CircularBuffer_IO.cpp" />
     <ClCompile Include="Source Files\DoubleLinkedList.cpp" />
@@ -46,6 +47,7 @@
     <ClInclude Include="Header Files\Stack.h" />
     <ClInclude Include="Header Files\Stack_IO.h" />
     <ClInclude Include="Header Files\SupportMethods.h" />
+    <ClInclude Include="Menu.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

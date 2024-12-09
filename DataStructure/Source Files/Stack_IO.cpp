@@ -1,6 +1,7 @@
 #include <iostream>
 #include "..\header files\Stack.h"
 #include "..\header files\SupportMethods.h"
+#include "../Menu.h"
 using namespace std;
 
 
@@ -31,8 +32,7 @@ void PrintStack(Stack* stack)
 
 void StackChoice(Stack* stack) 
 {
-    bool running = true;
-    while (running) 
+    while (true) 
     {
         ClearScreen();
         ShowStackMenu();
@@ -69,7 +69,7 @@ void StackChoice(Stack* stack)
             {
                 ClearScreen();
                 ShowMainMenu();
-                running = false;
+                return;
                 break;
             }
 
