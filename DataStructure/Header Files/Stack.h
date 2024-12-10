@@ -2,14 +2,20 @@
 //! \brief Structure for a stack.
 struct Stack
 {
-    int BufferSize;     
-    int* Buffer;       
-    int Top;            
+    /* @brief The current allocated size of the underlying buffer. */
+    int BufferSize;
+    /* @brief Pointer to the dynamically allocated integer array that stores stack elements. */
+    int* Buffer;
+    /* @brief Index of the top element in the stack. -1 indicates an empty stack. */
+    int Top;
 };
 
+/* @brief Initial size of the stack's buffer when it's first created. */
 const int INITIAL_STACK_SIZE = 4;
 
+/* @brief Factor by which the stack's buffer size is multiplied when resizing is needed. */
 const int GROWTH_FACTOR = 2;
+
 
 
 //! \brief Creates and initializes a stack.

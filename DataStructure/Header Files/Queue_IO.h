@@ -16,6 +16,14 @@ void ShowQueueMenu();
  */
 void PrintQueueByBuffer(QueueByBuffer* queue);
 
+
+/*
+ * @brief Prints the contents of a stack to the console.
+ *
+ * @param stack A pointer to the Stack structure to be printed.
+ */
+void PrintStackForQueue(Stack* stack);
+
 /*
  * @brief Prints the contents of a queue implemented using two stacks.
  *

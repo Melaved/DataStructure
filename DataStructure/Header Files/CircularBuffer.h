@@ -1,14 +1,22 @@
 #pragma once
 
-//! \brief Circular buffer structure.
+/*
+ * @brief Represents a circular buffer data structure.
+ */
 struct CircularBuffer
 {
+	/* @brief Pointer to the dynamically allocated integer array that holds the buffer's data. */
 	int* Buffer;
+	/* @brief Index of the tail (rear) of the buffer. */
 	int Tail;
+	/* @brief Index of the head (front) of the buffer. */
 	int Head;
+	/* @brief The maximum number of elements the buffer can hold. */
 	int BufferSize;
+	/* @brief The current number of elements in the buffer. */
 	int Count;
 };
+
 
 //! \brief initial circular buffer size.
 const int INITIAL_BUFFER_SIZE = 4;

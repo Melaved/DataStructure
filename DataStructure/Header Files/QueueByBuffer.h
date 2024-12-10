@@ -2,8 +2,10 @@
 //! \brief Structure for a queue implemented using a circular buffer.
 struct QueueByBuffer
 {
-    CircularBuffer* Buffer;  
+    /* @brief Pointer to the circular buffer used for storing queue elements. */
+    CircularBuffer* Buffer;
 };
+
 
 //! \brief Creates and initializes a queue using a circular buffer.
 //! \return Pointer to the created queue.

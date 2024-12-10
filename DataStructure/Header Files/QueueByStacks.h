@@ -3,11 +3,14 @@
 
 //! \brief Structure representing a queue implemented using two stacks
 struct QueueByStacks
-{ 
+{
+    /* @brief Stack used for enqueuing elements. */
     Stack* InStack;
 
+    /* @brief Stack used for dequeuing elements. */
     Stack* OutStack;
 };
+
 
 //! \brief Function to create a new instance of QueueByStacks
 //! \return Pointer to the newly created QueueByStacks instance.

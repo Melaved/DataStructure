@@ -27,24 +27,26 @@ void PrintQueueByBuffer(QueueByBuffer* queue)
 
 #include <iostream>
 
-void PrintStackForQueue(Stack* stack) {
-    if (stack == nullptr) {
-        std::cout << "Stack is null." << std::endl;
+void PrintStackForQueue(Stack* stack) 
+{
+    if (stack == nullptr) 
+    {
+        cout << "Stack is null." << endl;
         return;
     }
 
-    if (IsEmpty(stack)) {
-        std::cout << "Stack is empty." << std::endl;
+    if (IsEmpty(stack)) 
+    {
+        cout << "Stack is empty." << endl;
         return;
     }
 
     Stack* temp = CreateStack();
-
-
-    std::cout << "Stack contents: ";
-    while (!IsEmpty(stack)) {
+    cout << "Stack contents: ";
+    while (!IsEmpty(stack)) 
+    {
         int value = Pop(stack);
-        std::cout << value << " ";
+        cout << value << " ";
         Push(temp, value); 
     }
     cout << endl;
